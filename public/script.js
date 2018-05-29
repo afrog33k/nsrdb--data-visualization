@@ -14,3 +14,13 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 }).addTo(map);
 
 
+
+const getData = async() => {
+  const response = await fetch('/api/v1/denver');
+  const data = await response.json();
+  console.log(data)
+}
+
+
+getData()
+
