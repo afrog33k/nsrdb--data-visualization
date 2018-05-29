@@ -26,6 +26,6 @@ const superCleanData = allFiles.map(file => {
   dataCleaner(file)
 })
 
-console.log(superCleanData);
+return superCleanData;
 
 
