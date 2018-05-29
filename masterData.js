@@ -1,6 +1,9 @@
-import 138176 from './data/138176.json';
+console.log('working');
+import data138176 from './data/138176.json';
+import data138177 from './data/138177.json';
+import data138178 from './data/138178.json';
 
-const allFiles = [138176, ]
+const allFiles = [data138176, data138177, data138178];
 
 const dataCleaner = (datasetInput) => {
   let dataset = datasetInput
@@ -23,5 +26,7 @@ const dataCleaner = (datasetInput) => {
 const superCleanData = allFiles.map(file => {
   dataCleaner(file)
 })
+
+console.log(superCleanData);
 
 
