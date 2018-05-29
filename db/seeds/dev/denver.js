@@ -1,14 +1,27 @@
 const solarData = require('../../../masterData');
 
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
+  return knex('denver').del()
+    .then(() => {
+      let solarPromises = []
+      solarData.forEach(dataPoint => {
+        solarPromises.push(createSolarPoints(knex, dataPoint))
+      })
+      return Promise.all(solarPromises)
+
     });
 };
+
+const createSolarPoints = (knex, dataPoint) => {
+  const timePromises = dataPoint.map(time => {
+    return knex('denver').insert({
+      Latitude: time.Latitude,
+      Longitude: time.Longitude,
+      Day: time.Day,
+      Time: time.Time,
+      DNI: time.DNI
+    })
+  })
+  return Promise.all(timePromises)
+}
+

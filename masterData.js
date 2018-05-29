@@ -1,6 +1,6 @@
-import data138176 from './data/138176.json';
-import data138177 from './data/138177.json';
-import data138178 from './data/138178.json';
+const data138176 = require('./data/138176.json');
+const data138177 = require('./data/138177.json');
+const data138178 = require('./data/138178.json');
 
 const allFiles = [data138176, data138177, data138178];
 
@@ -9,23 +9,20 @@ const dataCleaner = (datasetInput) => {
   let infoObject = dataset.splice(0, 1)
   const timeArray = dataset.map(time => {
     return {
-      day: `2016-${time.Month}-${time.Day}`,
-      time: `${time.Hour}:${time.Minute}`,
+      Latitude: infoObject[0].Latitude,
+      Longitude: infoObject[0].Longitude,
+      Day: `2016-${time.Month}-${time.Day}`,
+      Time: `${time.Hour}:${time.Minute}`,
       DNI: time.DNI
     }
   })
-  let newObject = {
-    Latitude: infoObject[0].Latitude,
-    Longitude: infoObject[0].Longitude,
-    timeData: timeArray
-  }
-  return newObject
+  return timeArray
 }
 
 const superCleanData = allFiles.map(file => {
-  dataCleaner(file)
+  return dataCleaner(file)
 })
 
-return superCleanData;
+module.exports = superCleanData;
 
 
