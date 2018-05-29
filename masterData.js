@@ -1,4 +1,3 @@
-console.log('working');
 import data138176 from './data/138176.json';
 import data138177 from './data/138177.json';
 import data138178 from './data/138178.json';
