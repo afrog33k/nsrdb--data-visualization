@@ -86,6 +86,48 @@ const data139619 = require('./data/139619.json');
 const data139620 = require('./data/139620.json');
 const data139621 = require('./data/139621.json');
 const data139622 = require('./data/139622.json');
+const data140076 = require('./data/140076.json');
+const data140077 = require('./data/140077.json');
+const data140080 = require('./data/140080.json');
+const data140081 = require('./data/140081.json');
+const data140082 = require('./data/140082.json');
+const data140083 = require('./data/140083.json');
+const data140084 = require('./data/140084.json');
+const data140085 = require('./data/140085.json');
+const data140086 = require('./data/140086.json');
+const data140087 = require('./data/140087.json');
+const data140088 = require('./data/140088.json');
+const data140089 = require('./data/140089.json');
+const data140090 = require('./data/140090.json');
+const data140091 = require('./data/140091.json');
+const data140092 = require('./data/140092.json');
+const data140093 = require('./data/140093.json');
+const data140094 = require('./data/140094.json');
+const data140095 = require('./data/140095.json');
+const data140096 = require('./data/140096.json');
+const data140097 = require('./data/140097.json');
+const data140551 = require('./data/140551.json');
+const data140552 = require('./data/140552.json');
+const data140553 = require('./data/140553.json');
+const data140554 = require('./data/140554.json');
+const data140555 = require('./data/140555.json');
+const data140556 = require('./data/140556.json');
+const data140557 = require('./data/140557.json');
+const data140558 = require('./data/140558.json');
+const data140559 = require('./data/140559.json');
+const data140560 = require('./data/140560.json');
+const data140561 = require('./data/140561.json');
+const data140562 = require('./data/140562.json');
+const data140563 = require('./data/140563.json');
+const data140564 = require('./data/140564.json');
+const data140565 = require('./data/140565.json');
+const data140566 = require('./data/140566.json');
+const data140567 = require('./data/140567.json');
+const data140568 = require('./data/140568.json');
+const data140569 = require('./data/140569.json');
+const data140570 = require('./data/140570.json');
+const data140571 = require('./data/140571.json');
+const data140572 = require('./data/140572.json');
 
 
 
@@ -103,7 +145,14 @@ data139141, data139142, data139143, data139144, data139145, data139146,
 data139147, data139601, data139602, data139603, data139604, data139605,
 data139606, data139607, data139608, data139609, data139610, data139611,
 data139612, data139613, data139614, data139615, data139616, data139617,
-data139618, data139619, data139620, data139621, data139622];
+data139618, data139619, data139620, data139621, data139622, data140076,
+data140077, data140080, data140081, data140082, data140083, data140084, 
+data140085, data140086, data140087, data140088, data140089, data140090, 
+data140091, data140092, data140093, data140094, data140095, data140096, 
+data140097, data140551, data140552, data140553, data140554, data140555, 
+data140556, data140557, data140558, data140559, data140560, data140561, 
+data140562, data140563, data140564, data140565, data140566, data140567, 
+data140568, data140569, data140570, data140571, data140572];
 
 const dataCleaner = (datasetInput) => {
   let dataset = datasetInput
