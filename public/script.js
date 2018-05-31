@@ -13,18 +13,12 @@
 
 const element = document.getElementById('map');
 
-const map = L.map(element, {
-  zoom: 10,
-  center: [39.09, -105.86],
-  timeDimension: true,
-  timeDimensionControl: true
-});
-
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg', {
+const baseLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg', 
+  {
     maxZoom: 18,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg'
-}).addTo(map);
+});
 
 function solarFeed(data) {
   var getInterval = function(solar) {
@@ -79,12 +73,60 @@ const geojsonify = (data) => {
   return geojsonedData
 }
 
-const getData = async() => {
+
+const cfg = {
+  "radius": .01,
+  "maxOpacity": 1, 
+  "scaleRadius": true, 
+  "useLocalExtrema": false,
+  latField: 'lat',   
+  lngField: 'lng',   
+  valueField: 'count'
+};
+
+const heatmapLayer = new HeatmapOverlay(cfg);
+const refs = new L.LayerGroup();
+
+
+const getGeoJSONData = async() => {
   const response = await fetch('/api/v1/denver');
   const data = await response.json();
   const geojsonData = geojsonify(data)
   solarFeed(geojsonData)
 }
 
-getData()
 
+const getHeatMapData = async () => {
+  const heatData = await data.map( time => {
+    return {
+      lat: time.Latitude,
+      lng: time.Longitude,
+      count: time.DNI
+    }
+  });
+
+  const dataConfig = {
+    min: 0,
+    max: 1100,
+    data: heatData
+  }
+
+  return dataConfig;
+}
+
+
+
+const intilzeMap = async () => {
+  const heatmapData = await getHeatMapData();
+  heatmapLayer.setData(heatmapData);
+}
+
+const map = new L.Map('map', {
+  center: [39.09, -105.86],
+  zoom: 7,
+  layers: [baseLayer, heatmapLayer]
+})
+
+
+intilzeMap();
+getGeoJSONData();
