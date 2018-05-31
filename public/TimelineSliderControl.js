@@ -32,6 +32,7 @@ L.TimelineSliderControl = L.Control.extend({
    * control.
    */
   initialize(options = {}) {
+    console.log('options', options);
     const defaultOptions = {
       duration:               10000,
       enableKeyboardControls: false,
