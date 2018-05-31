@@ -44,6 +44,7 @@ function solarFeed(data) {
       var hue_min = 1110;
       var hue_max = 0;
       var hue = data.properties.dni 
+
       return L.circleMarker(latlng, {
         radius: 20,
         color: `hsl(${hue}, 100%, 50%)`,
@@ -51,13 +52,13 @@ function solarFeed(data) {
       })
     }
   })
+  console.log(timeline);
   timelineControl.addTo(map);
   timelineControl.addTimelines(timeline);
   timeline.addTo(map);
 }
 
 const geojsonify = (data) => {
-
   let geojsonedArray = data.map(datapoint => {
     return {
       "type": "Feature",
