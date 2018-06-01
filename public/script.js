@@ -34,26 +34,59 @@ function solarFeed(data) {
       var hue = data.properties.DNI 
       var color;
       switch(true) {
-        case (hue < 300):
-          color = 'red';
+        case (hue < 100):
+          color = '#05051B';
           break;
-        case((hue > 300) && (hue < 500)):
-          color = 'orange';
+        case((hue > 100) && (hue < 150)):
+          color = '#1F3B60';
+          break; 
+        case((hue > 150) && (hue < 200)):
+          color = '#22416B';
+          break; 
+        case((hue > 200) && (hue < 250)):
+          color = '#294F82';
+          break; 
+        case((hue > 250) && (hue < 300)):
+          color = '#2C568C';
+          break;  
+        case((hue > 300) && (hue < 350)):
+          color = '#1B1A42';
+          break;       
+        case((hue > 350) && (hue < 400)):
+          color = '#212054';
           break;
-        case ((hue > 500) && (hue < 600)):
-          color = 'yellow';
+        case((hue > 400) && (hue < 450)):
+          color = '#2A296B';
           break;
-        case ((hue > 600) && (hue < 700)):
-          color = 'aqua';
+        case((hue > 450) && (hue < 500)):
+          color = '#373589';
           break;
-        case ((hue > 700) && (hue < 800)):
-          color = 'green';
+        case((hue > 550) && (hue < 600)):
+          color = '#413FA3';
           break;
-        case ((hue > 800) && (hue < 900)):
-          color = 'blue';
+        case ((hue > 600) && (hue < 650)):
+          color = '#4C4ABF';
+          break;
+        case ((hue > 650) && (hue < 700)):
+          color = '#5654D8';
+          break;
+        case ((hue > 700) && (hue < 750)):
+          color = '#605EF2';
+          break;
+        case ((hue > 750) && (hue < 800)):
+          color = '#9789FF';
+          break;
+        case ((hue > 850) && (hue < 900)):
+          color = '#A499FF';
+          break;
+        case ((hue > 900) && (hue < 950)):
+          color = '#B6ADFF';
+          break;
+        case ((hue > 950) && (hue < 100)):
+          color = '#D1CCFF';
           break;
         default:
-          color = 'purple';
+          color = '#DFDBFF';
       }
       return L.circleMarker(latlng, {
         radius: 4,

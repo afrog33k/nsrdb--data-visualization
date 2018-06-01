@@ -2,3 +2,8 @@
   width: 600px;
   height: 600px;
 }
+
+.play {
+  background-color: red;
+  height: 20px;
+}
