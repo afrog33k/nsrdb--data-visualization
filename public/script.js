@@ -1,18 +1,4 @@
-// geoJSON data
-//var geojsonFeature = {
-//   "type": "Feature",
-//   "properties": {
-//     "DNI": 88,
-//     "time": YYYY-MM-DDtHH:MM
-//   },
-//   "geometry": {
-//     "type": "Point",
-//     "coordinates": [Lat, Long]
-//   }
-// }
-
 const element = document.getElementById('map');
-// const solarLayer = document.getElementById('solarLayer');
 
 const map = L.map(element, {
   zoom: 16,
@@ -44,14 +30,23 @@ function solarFeed(data) {
     getInterval: getInterval,
     waitToUpdateMap: true,
     pointToLayer: function(data, latlng) {
-      var hue_min = 1110;
-      var hue_max = 0;
       var hue = data.properties.DNI 
-      // console.log(latlng);
+      var color;
+      console.log(hue);
+      switch(true) {
+        case (hue < 100):
+          color = 'red';
+          break;
+        case ((hue > 100) && (hue < 200)):
+          color = 'blue';
+          break;
+        default:
+          color = 'green';
+      }
       return L.circleMarker(latlng, {
-        radius: 10,
-        color: 'red',
-        fillColor: 'blue'
+        radius: 3,
+        color: color,
+        // fillColor: 'blue'
       });
     }
   })
