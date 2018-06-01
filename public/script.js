@@ -15,14 +15,14 @@ const element = document.getElementById('map');
 // const solarLayer = document.getElementById('solarLayer');
 
 const map = L.map(element, {
-  zoom: 8,
+  zoom: 16,
   center: [39, -105]
 });
 
-var marker = L.marker([39.004, -105]).addTo(map);
+var marker = L.marker([39.09, -105.5]).addTo(map);
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg', {
-    maxZoom: 18,
+    maxZoom: 8,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg'
 }).addTo(map);
@@ -47,7 +47,7 @@ function solarFeed(data) {
       var hue_min = 1110;
       var hue_max = 0;
       var hue = data.properties.DNI 
-      // console.log(hue);
+      // console.log(latlng);
       return L.circleMarker(latlng, {
         radius: 10,
         color: 'red',
@@ -67,6 +67,7 @@ const geojsonify = (data) => {
     var startDate = startDateFormat.getTime()
     var endDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}9:00`)
     var endDate = endDateFormat.getTime()
+    // console.log(datapoint.Latitude);
     return {
       "type": "Feature",
       "properties": {
@@ -76,7 +77,7 @@ const geojsonify = (data) => {
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [parseInt(datapoint.Longitude), parseInt(datapoint.Latitude)]
+        "coordinates": [parseFloat(datapoint.Longitude), parseFloat(datapoint.Latitude)]
       }
     }
   })
