@@ -22,6 +22,22 @@ app.get('/api/v1/denver', (request, response) => {
     .catch( error => {
       response.status(500).json({error})
     })
+});
+
+app.get('/api/v1/denver/:day', (request, response) => {
+  database('denver').where('Day', `2016-6-${request.params.day}`).select()
+    .then( day => {
+      if (day.length) {
+        response.status(200).json(day)
+      } else {
+        response.status(404).json({
+          error: `Could not find data with Day ${request.params.day} `
+        })
+      }
+    })
+    .catch( error => {
+      response.status(500).json({error})
+    })
 })
 
 

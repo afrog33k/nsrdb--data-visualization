@@ -1,14 +1,14 @@
 const element = document.getElementById('map');
 
 const map = L.map(element, {
-  zoom: 16,
+  zoom: 20,
   center: [39, -105]
 });
 
 var marker = L.marker([39.09, -105.5]).addTo(map);
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg', {
-    maxZoom: 8,
+    maxZoom: 12,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg'
 }).addTo(map);
@@ -25,7 +25,9 @@ function solarFeed(data) {
       return new Date(date).toString();
     },
     position: 'topright',
-    steps: 10000
+    steps: 10000,
+    enablePlayback:true, 
+    enableKeyboardControls: true 
   })
   var timeline = L.timeline(data, {
     getInterval: getInterval,
@@ -102,5 +104,19 @@ const getData = async() => {
   solarFeed(geojsonData)
 }
 
+const selectDay = (e) => {
+  e.preventDefault();
+  const day = event.target.value;
+  fetchDay(day)
+}
+
+const fetchDay = async (day) => {
+  const response = await fetch(`/api/v1/denver/${day}`);
+  const data = await response.json();
+  const geojsonData = geojsonify(data)
+  solarFeed(geojsonData)
+}
+
 getData()
 
+$('.select-day').change(selectDay)
