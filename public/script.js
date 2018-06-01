@@ -12,16 +12,17 @@
 // }
 
 const element = document.getElementById('map');
+// const solarLayer = document.getElementById('solarLayer');
 
 const map = L.map(element, {
-  zoom: 10,
-  center: [39.09, -105.86],
-  timeDimension: true,
-  timeDimensionControl: true
+  zoom: 16,
+  center: [39, -105]
 });
 
+var marker = L.marker([39.09, -105.5]).addTo(map);
+
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg', {
-    maxZoom: 18,
+    maxZoom: 8,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg'
 }).addTo(map);
@@ -29,46 +30,54 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 function solarFeed(data) {
   var getInterval = function(solar) {
     return {
-      start: solar.properties.time,
-      end: solar.properties.time + 5000
+      start: solar.properties.start,
+      end: solar.properties.end
     }
   };
   var timelineControl = L.timelineSliderControl({
     formatOutput: function(date) {
       return new Date(date).toString();
-    }
+    },
+    position: 'topright'
   })
   var timeline = L.timeline(data, {
     getInterval: getInterval,
+    waitToUpdateMap: true,
     pointToLayer: function(data, latlng) {
       var hue_min = 1110;
       var hue_max = 0;
-      var hue = data.properties.dni 
-
+      var hue = data.properties.DNI 
+      // console.log(latlng);
       return L.circleMarker(latlng, {
-        radius: 20,
-        color: `hsl(${hue}, 100%, 50%)`,
-        fillColor: `hsl(${hue}, 100%, 50%)`
-      })
+        radius: 10,
+        color: 'red',
+        fillColor: 'blue'
+      });
     }
   })
-  console.log(timeline);
   timelineControl.addTo(map);
   timelineControl.addTimelines(timeline);
   timeline.addTo(map);
+  console.log(map);
 }
 
 const geojsonify = (data) => {
   let geojsonedArray = data.map(datapoint => {
+    var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}0:00`)
+    var startDate = startDateFormat.getTime()
+    var endDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}9:00`)
+    var endDate = endDateFormat.getTime()
+    // console.log(datapoint.Latitude);
     return {
       "type": "Feature",
       "properties": {
         "DNI": datapoint.DNI,
-        "time": `${datapoint.Day}t${datapoint.Time}0`
+        "start": startDate,
+        "end": endDate
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [datapoint.Latitude, datapoint.Longitude]
+        "coordinates": [parseFloat(datapoint.Longitude), parseFloat(datapoint.Latitude)]
       }
     }
   })
