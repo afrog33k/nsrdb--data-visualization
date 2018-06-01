@@ -1,18 +1,4 @@
-// geoJSON data
-//var geojsonFeature = {
-//   "type": "Feature",
-//   "properties": {
-//     "DNI": 88,
-//     "time": YYYY-MM-DDtHH:MM
-//   },
-//   "geometry": {
-//     "type": "Point",
-//     "coordinates": [Lat, Long]
-//   }
-// }
-
 const element = document.getElementById('map');
-// const solarLayer = document.getElementById('solarLayer');
 
 const map = L.map(element, {
   zoom: 16,
@@ -38,20 +24,42 @@ function solarFeed(data) {
     formatOutput: function(date) {
       return new Date(date).toString();
     },
-    position: 'topright'
+    position: 'topright',
+    steps: 10000
   })
   var timeline = L.timeline(data, {
     getInterval: getInterval,
     waitToUpdateMap: true,
     pointToLayer: function(data, latlng) {
-      var hue_min = 1110;
-      var hue_max = 0;
       var hue = data.properties.DNI 
-      // console.log(latlng);
+      var color;
+      switch(true) {
+        case (hue < 300):
+          color = 'red';
+          break;
+        case((hue > 300) && (hue < 500)):
+          color = 'orange';
+          break;
+        case ((hue > 500) && (hue < 600)):
+          color = 'yellow';
+          break;
+        case ((hue > 600) && (hue < 700)):
+          color = 'aqua';
+          break;
+        case ((hue > 700) && (hue < 800)):
+          color = 'green';
+          break;
+        case ((hue > 800) && (hue < 900)):
+          color = 'blue';
+          break;
+        default:
+          color = 'purple';
+      }
       return L.circleMarker(latlng, {
-        radius: 10,
-        color: 'red',
-        fillColor: 'blue'
+        radius: 4,
+        stroke: false,
+        fillColor: color,
+        fillOpacity: 1.0
       });
     }
   })
@@ -63,11 +71,10 @@ function solarFeed(data) {
 
 const geojsonify = (data) => {
   let geojsonedArray = data.map(datapoint => {
-    var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}0:00`)
+    var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:00:00`)
     var startDate = startDateFormat.getTime()
-    var endDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}9:00`)
+    var endDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:59:00`)
     var endDate = endDateFormat.getTime()
-    // console.log(datapoint.Latitude);
     return {
       "type": "Feature",
       "properties": {

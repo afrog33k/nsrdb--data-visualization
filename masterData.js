@@ -165,7 +165,7 @@ const dataCleaner = (datasetInput) => {
         Latitude: infoObject[0].Latitude,
         Longitude: infoObject[0].Longitude,
         Day: `2016-${time.Month}-${time.Day}`,
-        Time: `${time.Hour}:${time.Minute}`,
+        Time: `${time.Hour}`,
         DNI: time.DNI
       })
     }
