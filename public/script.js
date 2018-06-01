@@ -24,7 +24,8 @@ function solarFeed(data) {
     formatOutput: function(date) {
       return new Date(date).toString();
     },
-    position: 'topright'
+    position: 'topright',
+    steps: 10000
   })
   var timeline = L.timeline(data, {
     getInterval: getInterval,
@@ -32,16 +33,27 @@ function solarFeed(data) {
     pointToLayer: function(data, latlng) {
       var hue = data.properties.DNI 
       var color;
-      console.log(hue);
       switch(true) {
-        case (hue < 100):
+        case (hue < 300):
           color = 'red';
           break;
-        case ((hue > 100) && (hue < 200)):
+        case((hue > 300) && (hue < 500)):
+          color = 'orange';
+          break;
+        case ((hue > 500) && (hue < 600)):
+          color = 'yellow';
+          break;
+        case ((hue > 600) && (hue < 700)):
+          color = 'aqua';
+          break;
+        case ((hue > 700) && (hue < 800)):
+          color = 'green';
+          break;
+        case ((hue > 800) && (hue < 900)):
           color = 'blue';
           break;
         default:
-          color = 'green';
+          color = 'purple';
       }
       return L.circleMarker(latlng, {
         radius: 3,
@@ -58,11 +70,10 @@ function solarFeed(data) {
 
 const geojsonify = (data) => {
   let geojsonedArray = data.map(datapoint => {
-    var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}0:00`)
+    var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:00:00`)
     var startDate = startDateFormat.getTime()
-    var endDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}9:00`)
+    var endDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:59:00`)
     var endDate = endDateFormat.getTime()
-    // console.log(datapoint.Latitude);
     return {
       "type": "Feature",
       "properties": {
