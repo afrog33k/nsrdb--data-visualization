@@ -56,9 +56,10 @@ function solarFeed(data) {
           color = 'purple';
       }
       return L.circleMarker(latlng, {
-        radius: 3,
-        color: color,
-        // fillColor: 'blue'
+        radius: 4,
+        stroke: false,
+        fillColor: color,
+        fillOpacity: 1.0
       });
     }
   })
