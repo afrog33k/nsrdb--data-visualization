@@ -2,3 +2,32 @@
   width: 600px;
   height: 600px;
 }
+
+.play, 
+.prev,
+.pause,
+.next {
+  background-size: 18px;
+  background-position: center;
+  background-repeat: no-repeat;  
+  height: 20px;
+  width: 20px;
+  border-radius: 3px;
+  padding: 12px;
+}
+
+.play {
+  background-image: url('./assets/play-button.svg');
+}
+
+.prev {
+  background-image: url('./assets/previous.svg');
+}
+
+.pause {
+  background-image: url('./assets/pause.svg');
+}
+
+.next {
+  background-image: url('./assets/next.svg');
+}
