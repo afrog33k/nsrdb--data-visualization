@@ -13,6 +13,24 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
     accessToken: 'pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg'
 }).addTo(map);
 
+var legend = L.control({
+  position: 'bottomright'
+});
+
+legend.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    grades = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 1000],
+    labels = []
+
+  for (let i = 0; i < grades.length; i++) {
+    div.innerHTML += 
+      '<i style="background-color:' + getColor(grades[i] + 1) + '"></i> ' +
+      grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+  }
+  console.log(div);
+  return div
+}
+
 function solarFeed(data) {
   var getInterval = function(solar) {
     return {
@@ -25,7 +43,7 @@ function solarFeed(data) {
       return new Date(date).toString();
     },
     position: 'topright',
-    steps: 1000,
+    steps: 5000,
     enablePlayback:true, 
     enableKeyboardControls: true 
   })
@@ -33,67 +51,8 @@ function solarFeed(data) {
     getInterval: getInterval,
     waitToUpdateMap: true,
     pointToLayer: function(data, latlng) {
-      var hue = data.properties.DNI 
-      var color;
-      console.log(hue)
-      switch(true) {
-        case (hue < 50):
-          color = 'white';
-          break;
-        case((hue > 50) && (hue < 100)):
-          color = '#05051B';
-          break; 
-        case((hue > 100) && (hue < 150)):
-          color = '#1F3B60';
-          break; 
-        case((hue > 150) && (hue < 200)):
-          color = '#22416B';
-          break; 
-        case((hue > 200) && (hue < 250)):
-          color = '#294F82';
-          break; 
-        case((hue > 250) && (hue < 300)):
-          color = '#2C568C';
-          break;  
-        case((hue > 300) && (hue < 350)):
-          color = '#1B1A42';
-          break;       
-        case((hue > 350) && (hue < 400)):
-          color = '#212054';
-          break;
-        case((hue > 400) && (hue < 450)):
-          color = '#2A296B';
-          break;
-        case((hue > 450) && (hue < 500)):
-          color = '#373589';
-          break;
-        case((hue > 550) && (hue < 600)):
-          color = '#413FA3';
-          break;
-        case ((hue > 600) && (hue < 650)):
-          color = '#4C4ABF';
-          break;
-        case ((hue > 650) && (hue < 700)):
-          color = '#5654D8';
-          break;
-        case ((hue > 700) && (hue < 750)):
-          color = '#605EF2';
-          break;
-        case ((hue > 750) && (hue < 800)):
-          color = '#9789FF';
-          break;
-        case ((hue > 850) && (hue < 900)):
-          color = '#A499FF';
-          break;
-        case ((hue > 900) && (hue < 950)):
-          color = '#B6ADFF';
-          break;
-        case ((hue > 950) && (hue < 100)):
-          color = '#D1CCFF';
-          break;
-        default:
-          color = '#DFDBFF';
-      }
+      var color = getColor(data.properties.DNI)
+
       return L.circleMarker(latlng, {
         radius: 4,
         stroke: false,
@@ -105,6 +64,7 @@ function solarFeed(data) {
   timelineControl.addTo(map);
   timelineControl.addTimelines(timeline);
   timeline.addTo(map);
+  legend.addTo(map);
   console.log(map);
 }
 
