@@ -25,7 +25,7 @@ function solarFeed(data) {
       return new Date(date).toString();
     },
     position: 'topright',
-    steps: 10000,
+    steps: 1000,
     enablePlayback:true, 
     enableKeyboardControls: true 
   })
@@ -35,10 +35,14 @@ function solarFeed(data) {
     pointToLayer: function(data, latlng) {
       var hue = data.properties.DNI 
       var color;
+      console.log(hue)
       switch(true) {
-        case (hue < 100):
-          color = '#05051B';
+        case (hue < 50):
+          color = 'white';
           break;
+        case((hue > 50) && (hue < 100)):
+          color = '#05051B';
+          break; 
         case((hue > 100) && (hue < 150)):
           color = '#1F3B60';
           break; 
@@ -108,7 +112,7 @@ const geojsonify = (data) => {
   let geojsonedArray = data.map(datapoint => {
     var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:00:00`)
     var startDate = startDateFormat.getTime()
-    var endDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:59:00`)
+    var endDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:59:59`)
     var endDate = endDateFormat.getTime()
     return {
       "type": "Feature",

@@ -9,7 +9,6 @@ exports.up = function(knex, Promise) {
         table.string('Day');
         table.string('Time');
         table.integer('DNI').unsigned();
-        table.timestamps(true, true);
       })
   ])
 };

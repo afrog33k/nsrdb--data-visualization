@@ -130,6 +130,29 @@ const data140569 = require('./data/140569.json');
 const data140570 = require('./data/140570.json');
 const data140571 = require('./data/140571.json');
 const data140572 = require('./data/140572.json');
+const data141026 = require('./data/141026.json');
+const data141027 = require('./data/141027.json');
+const data141028 = require('./data/141028.json');
+const data141029 = require('./data/141029.json');
+const data141030 = require('./data/141030.json');
+const data141031 = require('./data/141031.json');
+const data141032 = require('./data/141032.json');
+const data141033 = require('./data/141033.json');
+const data141034 = require('./data/141034.json');
+const data141035 = require('./data/141035.json');
+const data141036 = require('./data/141036.json');
+const data141037 = require('./data/141037.json');
+const data141038 = require('./data/141038.json');
+const data141039 = require('./data/141039.json');
+const data141040 = require('./data/141040.json');
+const data141041 = require('./data/141041.json');
+const data141042 = require('./data/141042.json');
+const data141043 = require('./data/141043.json');
+const data141044 = require('./data/141044.json');
+const data141045 = require('./data/141045.json');
+const data141046 = require('./data/141046.json');
+const data141047 = require('./data/141047.json');
+
 
 const allFiles = [data138176, data138177, data138178, data138179, data138180,
 data138181, data138182, data138183, data138184, data138185, data138186,
@@ -153,14 +176,16 @@ data140095, data140096, data140097, data140551, data140552, data140553,
 data140554, data140555, data140556, data140557, data140558, data140559, 
 data140560, data140561, data140562, data140563, data140564, data140565, 
 data140566, data140567, data140568, data140569, data140570, data140571, 
-data140572
-]
+data140572, data141026, data141027, data141028, data141029, data141030,
+data141031, data141032, data141033, data141034, data141035, data141036,
+data141037, data141038, data141039, data141040, data141041, data141042,
+data141043, data141044, data141045, data141046, data141047]
 
 const dataCleaner = (datasetInput) => {
   let dataset = datasetInput
   let infoObject = dataset.splice(0, 1)
   const timeArray = dataset.reduce((array, time) => {
-    if (time.Month == 6 && time.Minute == 0){
+    if (time.Month == 6 && time.Minute == 0 && time.Day == 21){
       array.push({
         Latitude: infoObject[0].Latitude,
         Longitude: infoObject[0].Longitude,
