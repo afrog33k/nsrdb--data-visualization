@@ -133,23 +133,33 @@ const geojsonify = (data) => {
 const getData = async() => {
   const response = await fetch('/api/v1/denver');
   const data = await response.json();
-  const geojsonData = geojsonify(data)
-  solarFeed(geojsonData)
+  const geojsonData = geojsonify(data);
+  solarFeed(geojsonData);
 }
 
 const selectDay = (e) => {
   e.preventDefault();
   const day = event.target.value;
-  fetchDay(day)
+  fetchDay(day);
 }
 
 const fetchDay = async (day) => {
   const response = await fetch(`/api/v1/denver/${day}`);
   const data = await response.json();
-  const geojsonData = geojsonify(data)
-  solarFeed(geojsonData)
+  const geojsonData = geojsonify(data);
+  solarFeed(geojsonData);
+}
+
+const dayRange = async (e) => {
+  e.preventDefault();
+  const dayRange = e.target.value;
+  console.log(dayRange)
+  const response = await fetch(`/api/v1/denver?dayRange=${dayRange}`);
+  const data = await response.json();
+  console.log(data)
 }
 
 getData()
 
-$('.select-day').change(selectDay)
+$('.select-day').change(selectDay);
+$('.range').change(dayRange);
