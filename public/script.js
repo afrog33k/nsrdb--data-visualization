@@ -1,14 +1,14 @@
 const element = document.getElementById('map');
 
 const map = L.map(element, {
-  zoom: 20,
+  zoom: 18,
   center: [39, -105]
 });
 
 var marker = L.marker([39.09, -105.5]).addTo(map);
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg', {
-    maxZoom: 12,
+    maxZoom: 8,
     id: 'mapbox.streets',
     accessToken: 'pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg'
 }).addTo(map);
