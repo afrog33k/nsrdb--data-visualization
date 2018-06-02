@@ -152,10 +152,39 @@ const data141044 = require('./data/141044.json');
 const data141045 = require('./data/141045.json');
 const data141046 = require('./data/141046.json');
 const data141047 = require('./data/141047.json');
+const data141502 = require('./data/141502.json');
+const data141503 = require('./data/141503.json');
+const data141504 = require('./data/141504.json');
+const data141505 = require('./data/141505.json');
+const data141506 = require('./data/141506.json');
+const data141507 = require('./data/141507.json');
+const data141508 = require('./data/141508.json');
+const data141509 = require('./data/141509.json');
+const data141510 = require('./data/141510.json');
+const data141511 = require('./data/141511.json');
+const data141512 = require('./data/141512.json');
+const data141513 = require('./data/141513.json');
+const data141514 = require('./data/141514.json');
+const data141515 = require('./data/141515.json');
+const data141516 = require('./data/141516.json');
+const data141517 = require('./data/141517.json');
+const data141518 = require('./data/141518.json');
+const data141519 = require('./data/141519.json');
+const data141520 = require('./data/141520.json');
+const data141521 = require('./data/141521.json');
+const data141522 = require('./data/141522.json');
+const data141523 = require('./data/141523.json');
 
 
-// need to add to array
-const data14152 = require('./data/14152.json');
+
+
+
+
+
+
+
+
+
 
 const allFiles = [data138176, data138177, data138178, data138179, data138180,
 data138181, data138182, data138183, data138184, data138185, data138186,
@@ -182,7 +211,11 @@ data140566, data140567, data140568, data140569, data140570, data140571,
 data140572, data141026, data141027, data141028, data141029, data141030,
 data141031, data141032, data141033, data141034, data141035, data141036,
 data141037, data141038, data141039, data141040, data141041, data141042,
-data141043, data141044, data141045, data141046, data141047]
+data141043, data141044, data141045, data141046, data141047, data141502,
+data141503, data141504, data141505, data141506, data141507, data141508,
+data141509, data141510, data141511, data141512, data141513, data141514,
+data141515, data141516, data141517, data141518, data141519, data141520,
+data141521, data141522, data141523]
 
 const dataCleaner = (datasetInput) => {
   let dataset = datasetInput
