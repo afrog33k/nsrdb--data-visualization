@@ -43,7 +43,7 @@ function solarFeed(data) {
       return new Date(date).toString();
     },
     position: 'topright',
-    steps: 5000,
+    steps: 2000,
     enablePlayback:true, 
     enableKeyboardControls: true 
   })
