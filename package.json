@@ -4,20 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"
+    "test": "NODE_ENV=test mocha --exit"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "express": "^4.16.3",
     "knex": "^0.14.6",
     "leaflet": "^1.3.1",
+    "mocha": "^5.2.0",
     "papaparse": "^4.4.0",
     "pg": "^7.4.3"
-  },
-  "devDependencies": {
-    "increase-memory-limit": "^1.0.3",
-    "cross-env": "^5.0.5"
   }
 }
