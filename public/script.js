@@ -27,7 +27,6 @@ legend.onAdd = function (map) {
       '<i style="background-color:' + getColor(grades[i] + 1) + '"></i> ' +
       grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
   }
-  console.log(div);
   return div
 }
 
@@ -65,10 +64,10 @@ function solarFeed(data) {
   timelineControl.addTimelines(timeline);
   timeline.addTo(map);
   legend.addTo(map);
-  console.log(map);
 }
 
 const geojsonify = (data) => {
+  console.log('data in script:', data);
   let geojsonedArray = data.map(datapoint => {
     var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:00:00`)
     var startDate = startDateFormat.getTime()
@@ -103,12 +102,12 @@ const getData = async() => {
 
 const selectDay = (e) => {
   e.preventDefault();
-  const day = event.target.value;
-  fetchDay(day);
+  const hour = event.target.value;
+  fetchDay(hour);
 }
 
-const fetchDay = async (day) => {
-  const response = await fetch(`/api/v1/denver/${day}`);
+const fetchDay = async (hour) => {
+  const response = await fetch(`/api/v1/denver/${hour}`);
   const data = await response.json();
   const geojsonData = geojsonify(data);
   solarFeed(geojsonData);
