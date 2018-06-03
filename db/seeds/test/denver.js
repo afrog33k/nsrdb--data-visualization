@@ -11,14 +11,14 @@ const mockData = [[
     Latitude: 39.17,
     Longitude: -105.26,
     Day: '2016-6-21',
-    Time: 11,
+    Time: 12,
     DNI: 200
   },
   {
     Latitude: 39.53,
     Longitude: -105.02,
     Day: '2016-6-21',
-    Time: 12,
+    Time: 14,
     DNI: 300
   }
 ]]
@@ -35,7 +35,6 @@ exports.seed = function(knex, Promise) {
 };
 
 const createSolarPoints = (knex, dataPoint) => {
-  console.log(dataPoint);
   const timePromises = dataPoint.map(time => {
     return knex('denver').insert({
       Latitude: time.Latitude,
