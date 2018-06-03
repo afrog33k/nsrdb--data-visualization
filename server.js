@@ -18,14 +18,14 @@ app.get('/api/v1/denver', (request, response) => {
   const querySelector = request.param('dayRange');
   
   if (querySelector) {
-    database('denver').where('Day', '>', `2016-6-${querySelector}`).select()
+    database('denver').where('Time', '>', querySelector).select()
       .then( range => {
         console.log(range)
         if (range.length) {
           response.status(200).json(range)
         } else {
           response.status(404).json({
-            error: `Could not find data with Day 2016-6-${querySelector}`
+            error: `Could not find data with Hour ${querySelector}`
           });
         };
       })
@@ -46,14 +46,15 @@ app.get('/api/v1/denver', (request, response) => {
   
 });
 
-app.get('/api/v1/denver/:day', (request, response) => {
-  database('denver').where('Day', `2016-6-${request.params.day}`).select()
+app.get('/api/v1/denver/:hour', (request, response) => {
+  database('denver').where('Time', request.params.hour).select()
     .then( day => {
       if (day.length) {
+        console.log(day)
         response.status(200).json(day)
       } else {
         response.status(404).json({
-          error: `Could not find data with Day ${request.params.day} `
+          error: `Could not find data with Hour ${request.params.hour} `
         })
       }
     })
