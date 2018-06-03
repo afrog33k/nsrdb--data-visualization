@@ -1,4 +1,5 @@
 const element = document.getElementById('map');
+var timelineControl;
 
 const map = L.map(element, {
   zoom: 18,
@@ -37,7 +38,8 @@ function solarFeed(data) {
       end: solar.properties.end
     }
   };
-  var timelineControl = L.timelineSliderControl({
+
+  timelineControl = L.timelineSliderControl({
     formatOutput: function(date) {
       return new Date(date).toString();
     },
@@ -46,6 +48,8 @@ function solarFeed(data) {
     enablePlayback:true, 
     enableKeyboardControls: true 
   })
+
+  console.log(timelineControl)
   var timeline = L.timeline(data, {
     getInterval: getInterval,
     waitToUpdateMap: true,
@@ -109,17 +113,21 @@ const selectDay = (e) => {
 const fetchDay = async (hour) => {
   const response = await fetch(`/api/v1/denver/${hour}`);
   const data = await response.json();
-  const geojsonData = geojsonify(data);
-  solarFeed(geojsonData);
+  rerenderMap(data)
 }
 
 const dayRange = async (e) => {
   e.preventDefault();
   const dayRange = e.target.value;
-  console.log(dayRange)
   const response = await fetch(`/api/v1/denver?dayRange=${dayRange}`);
   const data = await response.json();
-  console.log(data)
+  rerenderMap(data)
+}
+
+const rerenderMap = (data) => {
+  timelineControl.remove(map);
+  const geojsonData = geojsonify(data);
+  solarFeed(geojsonData);
 }
 
 getData()
