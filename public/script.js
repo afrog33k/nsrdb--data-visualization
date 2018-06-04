@@ -1,7 +1,6 @@
-const element = document.getElementById('map');
 var timelineControl;
 
-const map = L.map(element, {
+const map = L.map('map', {
   zoom: 10,
   center: [39.4244, -105.2361]
 });
@@ -68,6 +67,7 @@ function solarFeed(data) {
 }
 
 const geojsonify = (data) => {
+  console.log(data)
   let geojsonedArray = data.map(datapoint => {
     var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:00:00`)
     var startDate = startDateFormat.getTime()
@@ -137,4 +137,6 @@ getData();
 
 $('.select-day').change(selectDay);
 $('.range').change(dayRange);
-$('.reset-map').click(resetMap)
+$('.reset-map').click(resetMap);
+
+
