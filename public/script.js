@@ -2,16 +2,14 @@ const element = document.getElementById('map');
 var timelineControl;
 
 const map = L.map(element, {
-  zoom: 18,
-  center: [39, -105]
+  zoom: 10,
+  center: [39.4244, -105.2361]
 });
 
-var marker = L.marker([39.09, -105.5]).addTo(map);
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg', {
-    maxZoom: 8,
-    id: 'mapbox.streets',
-    accessToken: 'pk.eyJ1IjoibW1kYmVyZyIsImEiOiJjamZ5NGNmOXEwaXJsMndtbnZweGx0MTExIn0.3uj1LoQZyx2ZVksJL-3Exg'
+var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+  maxZoom: 18,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
 var legend = L.control({
@@ -20,13 +18,13 @@ var legend = L.control({
 
 legend.onAdd = function (map) {
   var div = L.DomUtil.create('div', 'info legend'),
-    grades = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 1000],
+    grades = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 650, 700, 750, 800, 850, 900, 950,  1000],
     labels = []
 
   for (let i = 0; i < grades.length; i++) {
     div.innerHTML += 
       '<i style="background-color:' + getColor(grades[i] + 1) + '"></i> ' +
-      grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+      grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+' );
   }
   return div
 }
@@ -57,7 +55,7 @@ function solarFeed(data) {
       var color = getColor(data.properties.DNI)
 
       return L.circleMarker(latlng, {
-        radius: 4,
+        radius: 13.5,
         stroke: false,
         fillColor: color,
         fillOpacity: 1.0
@@ -130,7 +128,14 @@ const rerenderMap = (data) => {
   solarFeed(geojsonData);
 }
 
-getData()
+const resetMap = (e) => {
+  e.preventDefault();
+  timelineControl.remove(map);
+  getData();
+}
+
+getData();
 
 $('.select-day').change(selectDay);
 $('.range').change(dayRange);
+$('.reset-map').click(resetMap)
