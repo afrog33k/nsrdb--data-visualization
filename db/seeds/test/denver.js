@@ -1,10 +1,33 @@
-const solarData = require('../../../masterData');
+// const solarData = require('../../../masterData');
+const mockData = [[
+  {
+    Latitude: 39.09,
+    Longitude: -105.86,
+    Day: '2016-6-21',
+    Time: 10,
+    DNI: 100
+  },
+  {
+    Latitude: 39.17,
+    Longitude: -105.26,
+    Day: '2016-6-21',
+    Time: 12,
+    DNI: 200
+  },
+  {
+    Latitude: 39.53,
+    Longitude: -105.02,
+    Day: '2016-6-21',
+    Time: 14,
+    DNI: 300
+  }
+]]
 
 exports.seed = function(knex, Promise) {
   return knex('denver').del()
     .then(() => {
       let solarPromises = []
-      solarData.forEach(dataPoint => {
+      mockData.forEach(dataPoint => {
         solarPromises.push(createSolarPoints(knex, dataPoint))
       })
       return Promise.all(solarPromises)
