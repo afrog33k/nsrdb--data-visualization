@@ -1,5 +1,4 @@
-[
-  {
+[ {
     "Source": "NSRDB",
     "Location ID": "142930",
     "City": "-",
@@ -46,7 +45,8 @@
     "Fill Flag 5": "Rayleigh Violation",
     "Surface Albedo Units": "N/A",
     "Version": "v3.0.1"
-  },{
+  },
+  {
     "Year": "2016",
     "Month": "1",
     "Day": "1",
