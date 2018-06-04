@@ -21,7 +21,6 @@ app.get('/api/v1/denver', (request, response) => {
     database('denver').where('Time', '>', querySelector).select()
       .then( range => {
         if (range.length) {
-          console.log(range)
           response.status(200).json(range)
         } else {
           response.status(404).json({
