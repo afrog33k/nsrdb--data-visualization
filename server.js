@@ -15,7 +15,8 @@ app.get('/', (request, response) => {
 });
 
 app.get('/api/v1/denver', (request, response) => {
-  const querySelector = request.param('dayRange');
+  const querySelector = request.query.dayRange;
+  console.log(querySelector)
   
   if (querySelector) {
     database('denver').where('Time', '>', querySelector).select()

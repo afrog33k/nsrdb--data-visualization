@@ -1,4 +1,4 @@
-const solarData = require('../../../masterData');
+const solarData = require('../../../clean-data.json');
 
 exports.seed = function(knex, Promise) {
   return knex('denver').del()

@@ -47,7 +47,6 @@ function solarFeed(data) {
     enableKeyboardControls: true 
   })
 
-  console.log(timelineControl)
   var timeline = L.timeline(data, {
     getInterval: getInterval,
     waitToUpdateMap: true,
@@ -69,7 +68,6 @@ function solarFeed(data) {
 }
 
 const geojsonify = (data) => {
-  console.log('data in script:', data);
   let geojsonedArray = data.map(datapoint => {
     var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:00:00`)
     var startDate = startDateFormat.getTime()
@@ -119,6 +117,7 @@ const dayRange = async (e) => {
   const dayRange = e.target.value;
   const response = await fetch(`/api/v1/denver?dayRange=${dayRange}`);
   const data = await response.json();
+  console.log('data:', data);
   rerenderMap(data)
 }
 
