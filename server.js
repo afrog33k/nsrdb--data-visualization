@@ -20,8 +20,8 @@ app.get('/api/v1/denver', (request, response) => {
   if (querySelector) {
     database('denver').where('Time', '>', querySelector).select()
       .then( range => {
-        console.log(range)
         if (range.length) {
+          console.log(range)
           response.status(200).json(range)
         } else {
           response.status(404).json({
@@ -48,10 +48,9 @@ app.get('/api/v1/denver', (request, response) => {
 
 app.get('/api/v1/denver/:hour', (request, response) => {
   database('denver').where('Time', request.params.hour).select()
-    .then( day => {
-      if (day.length) {
-        console.log(day)
-        response.status(200).json(day)
+    .then( hour => {
+      if (hour.length) {
+        response.status(200).json(hour)
       } else {
         response.status(404).json({
           error: `Could not find data with Hour ${request.params.hour} `
