@@ -15,7 +15,7 @@
   width: 25%;
   border-radius: 3px;
   border: 2px solid #B5B5B5;
-  padding: 16px;
+  padding: 12px;
   margin: 10px auto;
 }
 
@@ -25,6 +25,11 @@
 .next:hover,
 .reset-map:hover {
   background-color: #77b76d;
+}
+
+.leaflet-control-layers-expanded.leaflet-control {
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 
@@ -56,12 +61,14 @@
   height: 125px;
 }
 
-.legend {
+.info.legend.leaflet-control {
   width: 230px;
   line-height: 22px;
   color: #555;
   background-color: #FFFFFF;
-  padding: 20px;
+  padding: 8px 10px;
+  position: relative;
+  top: 3em;
 }
 
 .legend i {
@@ -76,25 +83,36 @@
 .form {
   z-index: 1000;
   position: absolute;
-  top: 15em;
-  right: 1em;
-  width: 240px;
+  top: 9.1em;
+  right: 1.1em;
+  width: 235px;
   background-color: #FFF;
   border-radius: 5px;
   border: 2px solid #B5B5B5;
-  padding: 1em;
+  padding: .5em 1em;
 }
 
 .select-day {
   position: absolute;
-  top: 0.9em;
-  right: 10px;
+  top: 0.8em;
+  right: 35px;
   width: 45px;
-  font-size: 1em;
+  font-size: .8em;
+}
+
+.label_day, 
+.select_start {
+  font-size: 12px;
+}
+
+.select_start {
+  display: block;
+  margin: 10px 0;
 }
 
 .range {
-  width: 100%;
+  width: 82%;
+  vertical-align: bottom;
 }
 
 .reset-map {
