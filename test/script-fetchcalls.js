@@ -33,11 +33,13 @@ const geojsonify = (data) => {
         "coordinates": [parseFloat(datapoint.Longitude), parseFloat(datapoint.Latitude)]
       }
     }
-  })
+  });
+
   const geojsonedData = {
     "type": "FeatureCollection",
     "features": geojsonedArray
   }
+
   return geojsonedData
 }
 

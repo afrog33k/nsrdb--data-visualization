@@ -1,8 +1,8 @@
 const assert= require('chai').assert;
 const expect= require('chai').expect;
 
-const { getData, fetchDay, dayRange,  geojsonify } = require('./script-fetchcalls.js');
-const data = require('./mockdata.js');
+const { getData, fetchDay, dayRange, geojsonify } = require('./script-fetchcalls.js');
+const { data, geoJson } = require('./mockdata.js');
 const chai = require('chai');
 const should = chai.should();
 const chaiFetchMock = require('chai-fetch-mock');
@@ -59,4 +59,11 @@ describe('dayRange', (done) => {
   })
  
   fetchMock.restore();
-})
+});
+
+describe('geojsonify', (done) => {
+  it('should change the data into a geojson format', () => {
+    const expected = geojsonify(data)
+    expect(expected).to.deep.equal(geoJson)
+  });
+});

@@ -67,6 +67,7 @@ function solarFeed(data) {
 }
 
 const geojsonify = (data) => {
+  console.log(data)
   let geojsonedArray = data.map(datapoint => {
     var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:00:00`)
     var startDate = startDateFormat.getTime()
