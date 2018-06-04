@@ -43,6 +43,11 @@ const data144376 = require('./data/144376.json');
 const data144377 = require('./data/144377.json');
 const data144378 = require('./data/144378.json');
 const data144379 = require('./data/144379.json');
+const data144835 = require('./data/144835.json');
+const data144836 = require('./data/144836.json');
+const data144837 = require('./data/144837.json');
+const data144838 = require('./data/144838.json');
+
 
 const allFiles = [data143882, data143883, data143884,
 data143885, data143886, data143887, data143888, data143889, data143890, 
@@ -51,7 +56,8 @@ data143897, data143898, data143899, data143900, data143901, data143902,
 data143903, data144358, data144359, data144360, data144361, data144362, 
 data144363, data144364, data144365, data144366, data144367, data144368, 
 data144369, data144370, data144371, data144372, data144373, data144374, 
-data144375, data144376, data144377, data144378, data144379]
+data144375, data144376, data144377, data144378, data144379, data144835,
+data144836, data144837, data144838]
 
 
 const dataCleaner = (datasetInput) => {
