@@ -1,7 +1,6 @@
-const element = document.getElementById('map');
 var timelineControl;
 
-const map = L.map(element, {
+const map = L.map('map', {
   zoom: 10,
   center: [39.4244, -105.2361]
 });
@@ -137,4 +136,6 @@ getData();
 
 $('.select-day').change(selectDay);
 $('.range').change(dayRange);
-$('.reset-map').click(resetMap)
+$('.reset-map').click(resetMap);
+
+
