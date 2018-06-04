@@ -266,51 +266,6 @@ const data143425 = require('./data/143425.json');
 const data143426 = require('./data/143426.json');
 const data143427 = require('./data/143427.json');
 
-// const data143882 = require('./data/143882.json');
-// const data143883 = require('./data/143883.json');
-// const data143884 = require('./data/143884.json');
-// const data143885 = require('./data/143885.json');
-// const data143886 = require('./data/143886.json');
-// const data143887 = require('./data/143887.json');
-// const data143888 = require('./data/143888.json');
-// const data143889 = require('./data/143889.json');
-// const data143890 = require('./data/143890.json');
-// const data143891 = require('./data/143891.json');
-// const data143892 = require('./data/143892.json');
-// const data143893 = require('./data/143893.json');
-// const data143894 = require('./data/143894.json');
-// const data143895 = require('./data/143895.json');
-// const data143896 = require('./data/143896.json');
-// const data143897 = require('./data/143897.json');
-// const data143898 = require('./data/143898.json');
-// const data143899 = require('./data/143899.json');
-// const data143900 = require('./data/143900.json');
-// const data143901 = require('./data/143901.json');
-// const data143902 = require('./data/143902.json');
-// const data143903 = require('./data/143903.json');
-// const data144358 = require('./data/144358.json');
-// const data144359 = require('./data/144359.json');
-// const data144360 = require('./data/144360.json');
-// const data144361 = require('./data/144361.json');
-// const data144362 = require('./data/144362.json');
-// const data144363 = require('./data/144363.json');
-// const data144364 = require('./data/144364.json');
-// const data144365 = require('./data/144365.json');
-// const data144366 = require('./data/144366.json');
-// const data144367 = require('./data/144367.json');
-// const data144368 = require('./data/144368.json');
-// const data144369 = require('./data/144369.json');
-// const data144370 = require('./data/144370.json');
-// const data144371 = require('./data/144371.json');
-// const data144372 = require('./data/144372.json');
-// const data144373 = require('./data/144373.json');
-// const data144374 = require('./data/144374.json');
-// const data144375 = require('./data/144375.json');
-// const data144376 = require('./data/144376.json');
-// const data144377 = require('./data/144377.json');
-// const data144378 = require('./data/144378.json');
-// const data144379 = require('./data/144379.json');
-
 
 const allFiles = [data138176, data138177, data138178, data138179, data138180,
 data138181, data138182, data138183, data138184, data138185, data138186,
@@ -357,17 +312,6 @@ data143409, data143410, data143411, data143412, data143413, data143414,
 data143415, data143416, data143417, data143418,
 data143419, data143420, data143421, data143422, data143423, data143424,
 data143425, data143426, data143427]
-// data143882, data143883, data143884,
-// data143885, data143886, data143887, data143888, data143889, data143890, 
-// data143891, data143892, data143893, data143894, data143895, data143896, 
-// data143897, data143898, data143899, data143900, data143901, data143902, 
-// data143903,
-//data144358, data144359, data144360, data144361, data144362, 
-// data144363, data144364, data144365, data144366, data144367, data144368, 
-// data144369, data144370, data144371, data144372, data144373, data144374, 
-// data144375, data144376, data144377, data144378, data144379]
-
-
 
 const dataCleaner = (datasetInput) => {
   let dataset = datasetInput
@@ -403,4 +347,3 @@ const addFile = async (allFiles) => {
 }
 
 addFile(allFiles)
-

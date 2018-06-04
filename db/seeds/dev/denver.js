@@ -1,4 +1,6 @@
-const solarData = require('../../../clean-data.json');
+const solarData1 = require('../../../clean-data.json');
+const solarData2 = require('../../../clean-data2.json');
+const solarData = [...solarData1, ...solarData2]
 
 exports.seed = function(knex, Promise) {
   return knex('denver').del()
@@ -14,8 +16,8 @@ exports.seed = function(knex, Promise) {
 const createSolarPoints = (knex, dataPoint) => {
   const timePromises = dataPoint.map(time => {
     return knex('denver').insert({
-      Latitude: time.Latitude,
-      Longitude: time.Longitude,
+      Latitude: time.Latitude || 39.49,
+      Longitude: time.Longitude || -105.86,
       Day: time.Day,
       Time: time.Time,
       DNI: time.DNI
