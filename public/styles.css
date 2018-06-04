@@ -15,9 +15,18 @@
   width: 25%;
   border-radius: 3px;
   border: 2px solid #B5B5B5;
-  padding: 25px;
+  padding: 16px;
   margin: 10px auto;
 }
+
+.play:hover, 
+.prev:hover,
+.pause:hover,
+.next:hover,
+.reset-map:hover {
+  background-color: #77b76d;
+}
+
 
 .play {
   background-image: url('./assets/play-button.svg');

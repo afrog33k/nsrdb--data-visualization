@@ -20,16 +20,19 @@ const getColor = (DNI) => {
       color = '#4E4177';
       break;  
     case((DNI > 300) && (DNI < 350)):
-      color = '#3D5A6C';
+      color = '#1C3738';
       break;       
     case((DNI > 350) && (DNI < 400)):
-      color = '#72A98F';
+      color = '#3D5A6C';
       break;
     case((DNI > 400) && (DNI < 450)):
-      color = '#1C3738';
+      color = '#72A98F';
       break;
     case((DNI > 450) && (DNI < 500)):
-      color = '#8DE969';
+      color = '#29c7b9';
+      break;
+    case((DNI > 500) && (DNI < 550)):
+      color = '#02e6f1';
       break;
     case((DNI > 550) && (DNI < 600)):
       color = '#8DE969';
@@ -38,25 +41,28 @@ const getColor = (DNI) => {
       color = '#DEB841';
       break;
     case ((DNI > 650) && (DNI < 700)):
-      color = '#DE9E36';
+      color = '#cddc39';
       break;
     case ((DNI > 700) && (DNI < 750)):
-      color = '#FFDE3A';
-      break;
-    case ((DNI > 750) && (DNI < 800)):
       color = '#F1FF8C';
       break;
-    case ((DNI > 850) && (DNI < 900)):
-      color = '#DC9046';
+    case ((DNI > 750) && (DNI < 800)):
+      color = '#FFDE3A';
       break;
-    case ((DNI > 900) && (DNI < 950)):
+    case ((DNI > 800) && (DNI < 850)):
+      color = '#DE9E36';
+      break;
+    case ((DNI > 850) && (DNI < 900)):
       color = '#FF7129';
       break;
-    case ((DNI > 950) && (DNI < 1000)):
+    case ((DNI > 900) && (DNI < 950)):
       color = '#FE4D2F';
       break;
-    default:
+    case ((DNI > 950) && (DNI < 1000)):
       color = '#F22B2B';
+      break;
+    default:
+      color = '#ab003a';
   }
   return color
 }
