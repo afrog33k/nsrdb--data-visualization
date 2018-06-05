@@ -131,7 +131,6 @@ const data140569 = require('./data/140569.json');
 const data140570 = require('./data/140570.json');
 const data140571 = require('./data/140571.json');
 const data140572 = require('./data/140572.json');
-
 const data141026 = require('./data/141026.json');
 const data141027 = require('./data/141027.json');
 const data141028 = require('./data/141028.json');
@@ -242,7 +241,6 @@ const data142948 = require('./data/142948.json');
 const data142949 = require('./data/142949.json');
 const data142950 = require('./data/142950.json');
 const data142951 = require('./data/142951.json');
-
 const data143406 = require('./data/143406.json');
 const data143407 = require('./data/143407.json');
 const data143408 = require('./data/143408.json');
