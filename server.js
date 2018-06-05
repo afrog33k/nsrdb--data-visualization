@@ -15,18 +15,17 @@ app.get('/', (request, response) => {
 });
 
 app.get('/api/v1/denver', (request, response) => {
-  const querySelector = request.query.dayRange;
+  const queryStart = request.query.start
+  const queryEnd = request.query.end
   
-  if (querySelector) {
-    const stringSelector = querySelector
-
-    database('denver').whereBetween('Time', [stringSelector, 24]).select()
+  if (queryStart) {
+    database('denver').whereBetween('Time', [queryStart, queryEnd]).select()
       .then( range => {
         if (range.length) {
           response.status(200).json(range)
         } else {
           response.status(404).json({
-            error: `Could not find data with Hour ${querySelector}`
+            error: `Could not find data within hours ${queryStart} and ${queryEnd}`
           });
         }
       })

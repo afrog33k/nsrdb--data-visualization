@@ -23,12 +23,10 @@ legend.onAdd = function () {
   for (let i = 0; i < grades.length; i++) {
     div.innerHTML += 
       '<i style="background-color:' + getColor(grades[i] + 1) + '"></i> ' +
-      grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + ' ' + 'DNI' + '<br>' : '+' );
+      grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + ' ' + 'DNI' + '<br>' : '+' + ' ' + 'DNI' );
   }
   return div
 }
-
-
 
 function solarFeed(data) {
   var getInterval = function(solar) {
@@ -96,10 +94,8 @@ const geojsonify = (data) => {
     "type": "FeatureCollection",
     "features": geojsonedArray
   }
-
   return geojsonedData
 }
-
 
 const getData = async() => {
   const response = await fetch('/api/v1/denver');
@@ -139,19 +135,35 @@ const rerenderMap = (data) => {
   solarFeed(geojsonData);
 }
 
+const makeSlider = () => {
+  $('.slider').slider({
+    range: true,
+    min: 0,
+    max: 24,
+    step: 1,
+    values: [0, 24],
+    slide: async (event, ui) => {
+      let start = ui.values[0]
+      let end = ui.values[1]
+      $('.selected-range').text(`Start: ${start}:00 - End: ${end}:00`)
+      const response = await fetch(`/api/v1/denver?start=${start}&end=${end}`);
+  const data = await response.json();
+  rerenderMap(data)
+    }
+  })
+}
+
 const resetMap = (e) => {
   e.preventDefault();
+  $( ".slider" ).slider("values", [0, 24]);
+  $('.selected-range').text('')
   timelineControl.remove(map);
   getData();
 }
 
 getData();
-
-
+makeSlider();
 
 /* eslint-disable */
 $('.select-day').change(selectDay);
-$('.range').change(dayRange);
 $('.reset-map').click(resetMap);
-
-
