@@ -162,7 +162,6 @@ const data145317 = require('./data/145317.json');
 const data145318 = require('./data/145318.json');
 const data145319 = require('./data/145319.json');
 const data145320 = require('./data/145320.json');
-const data145320 = require('./data/145320.json');
 const data145321 = require('./data/145321.json');
 const data145322 = require('./data/145322.json');
 const data145323 = require('./data/145323.json');

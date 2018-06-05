@@ -1,13 +1,13 @@
 var timelineControl;
 
 const map = L.map('map', {
-  zoom: 10,
-  center: [39.4244, -105.2361]
+  zoom: 9,
+  center: [39.7392, -104.9903]
 });
 
 
 var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-  maxZoom: 18,
+  maxZoom: 19,
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
@@ -53,7 +53,7 @@ function solarFeed(data) {
       var color = getColor(data.properties.DNI)
 
       return L.circleMarker(latlng, {
-        radius: 13.5,
+        radius: 10,
         stroke: false,
         fillColor: color,
         fillOpacity: 1.0
