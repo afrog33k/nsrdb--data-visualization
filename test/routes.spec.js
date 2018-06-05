@@ -44,12 +44,12 @@ describe('Endpoint tests', () => {
 
   it('should return hours above hour selected by user on slider', (done) => {
     chai.request(app)
-      .get('/api/v1/denver?dayRange=12')
+      .get('/api/v1/denver?start=13&end=15')
       .end((error, response) => {
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.an('array')
-        response.body.length.should.equal(2)
+        response.body.length.should.equal(1)
         response.body[0].should.have.property('Latitude')
         response.body[0].Latitude.should.equal('39.53')
         response.body[0].should.have.property('Longitude')
