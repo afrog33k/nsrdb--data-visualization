@@ -30,14 +30,12 @@ app.get('/api/v1/denver', (request, response) => {
           response.status(404).json({
             error: `Could not find data with Hour ${querySelector}`
           });
-        };
+        }
       })
       .catch( error => {
         response.status(500).json({error})
       })
-  }
-
-  else {
+  } else {
     database('denver').select()
       .then( denverData => {
         response.status(200).json(denverData)

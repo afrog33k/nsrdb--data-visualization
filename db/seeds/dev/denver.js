@@ -7,6 +7,7 @@ exports.seed = function(knex, Promise) {
   return knex('denver').del()
     .then(() => {
       let solarPromises = []
+
       solarData.forEach(dataPoint => {
         solarPromises.push(createSolarPoints(knex, dataPoint))
       })
@@ -24,6 +25,7 @@ const createSolarPoints = (knex, dataPoint) => {
       DNI: time.DNI
     })
   })
+
   return Promise.all(timePromises)
 }
 

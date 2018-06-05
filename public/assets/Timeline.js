@@ -3,7 +3,7 @@
 // import IntervalTree from 'diesal/src/ds/IntervalTree';
 
 L.Timeline = L.GeoJSON.extend({
-  times:  null,
+  times: null,
   ranges: null,
 
   /**
@@ -23,6 +23,7 @@ L.Timeline = L.GeoJSON.extend({
     const defaultOptions = {
       drawOnSetTime: true,
     };
+
     L.GeoJSON.prototype.initialize.call(this, null, options);
     L.Util.setOptions(this, defaultOptions);
     L.Util.setOptions(this, options);
@@ -37,10 +38,11 @@ L.Timeline = L.GeoJSON.extend({
   _getInterval(feature) {
     const hasStart = 'start' in feature.properties;
     const hasEnd = 'end' in feature.properties;
+
     if (hasStart && hasEnd) {
       return {
         start: new Date(feature.properties.start).getTime(),
-        end:   new Date(feature.properties.end).getTime(),
+        end: new Date(feature.properties.end).getTime(),
       };
     }
     return false;
@@ -58,9 +60,13 @@ L.Timeline = L.GeoJSON.extend({
     // into the interval tree.
     let start = Infinity;
     let end = -Infinity;
+
     data.features.forEach((feature) => {
       const interval = this._getInterval(feature);
-      if (!interval) { return; }
+
+      if (!interval) {
+        return; 
+      }
       this.ranges.insert(interval.start, interval.end, feature);
       this.times.push(interval.start);
       this.times.push(interval.end);
@@ -82,6 +88,7 @@ L.Timeline = L.GeoJSON.extend({
         return newList;
       }
       const lastTime = newList[newList.length - 1];
+
       if (lastTime !== x) {
         newList.push(x);
       }
@@ -117,9 +124,11 @@ L.Timeline = L.GeoJSON.extend({
     // we find a match, then we remove it from the feature list. If we don't
     // find a match, then the displayed layer is no longer valid at this time.
     // We should remove it.
+
     for (let i = 0; i < this.getLayers().length; i++) {
       let found = false;
       const layer = this.getLayers()[i];
+
       for (let j = 0; j < features.length; j++) {
         if (layer.feature === features[j]) {
           found = true;
@@ -129,6 +138,7 @@ L.Timeline = L.GeoJSON.extend({
       }
       if (!found) {
         const toRemove = this.getLayers()[i--];
+
         this.removeLayer(toRemove);
       }
     }

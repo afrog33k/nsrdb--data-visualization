@@ -62,6 +62,7 @@ class IntervalTree {
    */
   _insert(begin, end, value, node, parent, parentSide) {
     let newNode;
+
     if (node === null) {
       // The place we're looking at is available; let's put our node here.
       newNode = new IntervalTreeNode(begin, end, value, parent);
@@ -78,6 +79,7 @@ class IntervalTree {
       const side = (begin < node.low || begin === node.low && end < node.high)
         ? 'left'
         : 'right';
+
       newNode = this._insert(begin, end, value, node[side], node, side);
       node.max = Math.max(node.max, newNode.max);
       node.min = Math.min(node.min, newNode.min);
@@ -99,6 +101,7 @@ class IntervalTree {
 
   _lookup(point, node = this._root) {
     const overlaps = [];
+
     if (node === null || node.max < point) {
       return overlaps;
     }
@@ -124,6 +127,7 @@ class IntervalTree {
 
   _overlap(begin, end, node = this._root) {
     const overlaps = [];
+
     if (!(begin > node.high || node.low > end)) {
       overlaps.push(node.data);
     }
