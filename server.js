@@ -15,11 +15,15 @@ app.get('/', (request, response) => {
 });
 
 app.get('/api/v1/denver', (request, response) => {
-  const querySelector = request.query.dayRange;
+  const querySelector = request.query.dayRange
+  console.log(querySelector)
   
   if (querySelector) {
-    database('denver').where('Time', '>', querySelector).select()
+    const stringSelector = querySelector
+    console.log(stringSelector)
+    database('denver').whereBetween('Time', [stringSelector, 24]).select()
       .then( range => {
+        console.log('range-length:', range.length)
         if (range.length) {
           response.status(200).json(range)
         } else {
