@@ -21,15 +21,9 @@ app.get('/api/v1/denver', (request, response) => {
   if (queryStart) {
     database('denver').whereBetween('Time', [queryStart, queryEnd]).select()
       .then( range => {
-        if (range.length) {
-          response.status(200).json(range)
-        } else {
-          response.status(404).json({
-            error: `Could not find data within hours ${queryStart} and ${queryEnd}`
-          });
-        }
+        response.status(200).json(range)
       })
-      .catch( error => {
+      .catch(error => {
         response.status(500).json({error})
       })
   } else {
@@ -51,7 +45,7 @@ app.get('/api/v1/denver/:hour', (request, response) => {
         response.status(200).json(hour)
       } else {
         response.status(404).json({
-          error: `Could not find data with Hour ${request.params.hour} `
+          error: `Could not find data with Hour ${request.params.hour}`
         })
       }
     })

@@ -94,6 +94,7 @@ const geojsonify = (data) => {
     "type": "FeatureCollection",
     "features": geojsonedArray
   }
+
   return geojsonedData
 }
 
@@ -119,15 +120,6 @@ const fetchDay = async (hour) => {
   rerenderMap(data)
 }
 
-const dayRange = async (e) => {
-  e.preventDefault();
-  const dayRange = e.target.value;
-  const response = await fetch(`/api/v1/denver?dayRange=${dayRange}`);
-  const data = await response.json();
-
-  rerenderMap(data)
-}
-
 const rerenderMap = (data) => {
   timelineControl.remove(map);
   const geojsonData = geojsonify(data);
@@ -135,6 +127,7 @@ const rerenderMap = (data) => {
   solarFeed(geojsonData);
 }
 
+/* eslint-disable */
 const makeSlider = () => {
   $('.slider').slider({
     range: true,
@@ -160,6 +153,7 @@ const resetMap = (e) => {
   timelineControl.remove(map);
   getData();
 }
+/* eslint-enable */
 
 getData();
 makeSlider();

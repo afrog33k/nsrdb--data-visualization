@@ -42,7 +42,7 @@ describe('Endpoint tests', () => {
       })
   })
 
-  it('should return hours above hour selected by user on slider', (done) => {
+  it('should return hours btwn hours selected by user on slider', (done) => {
     chai.request(app)
       .get('/api/v1/denver?start=13&end=15')
       .end((error, response) => {
@@ -60,6 +60,18 @@ describe('Endpoint tests', () => {
         response.body[0].Time.should.equal(14)
         response.body[0].should.have.property('DNI')
         response.body[0].DNI.should.equal(300)
+        done();
+      })
+  })
+
+  it('should return error if hour range is invalid', (done) => {
+    chai.request(app)
+      .get('/api/v1/denver?start=a&end=b')
+      .end((error, response) => {
+        response.should.have.status(500);
+        response.should.be.json;
+        response.should.be.an('object')
+        response.body.should.have.property('error')
         done();
       })
   })
@@ -83,6 +95,19 @@ describe('Endpoint tests', () => {
         response.body[0].Time.should.equal(10)
         response.body[0].should.have.property('DNI')
         response.body[0].DNI.should.equal(100)
+        done();
+      })
+  })
+
+  it('should return error if hour is invalid', (done) => {
+    chai.request(app)
+      .get('/api/v1/denver/25')
+      .end((error, response) => {
+        response.should.have.status(404);
+        response.should.be.json;
+        response.body.should.be.an('object')
+        response.body.should.have.property('error')
+        response.body.error.should.equal('Could not find data with Hour 25')
         done();
       })
   })
