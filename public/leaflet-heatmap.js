@@ -1,3 +1,4 @@
+/* eslint-disable */
 // *
 // * Leaflet Heatmap Overlay
 // *

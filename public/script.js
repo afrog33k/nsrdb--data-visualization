@@ -92,6 +92,7 @@ const geojsonify = (data) => {
   return geojsonedData
 }
 
+
 const getData = async() => {
   const response = await fetch('/api/v1/denver');
   const data = await response.json();

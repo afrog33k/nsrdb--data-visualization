@@ -1,13 +1,13 @@
 const { data, jsonData } = require('./mockdata.js');
 
-
+// eslint-disable-next-line
 const fetchDay = async (hour) => {
   const response = await fetch(`/api/v1/denver/${hour}`);
   const data = await response.json();
   rerenderMap(data)
 }
 
-const rerenderMap = (data) =>{
+const rerenderMap = (data) => {
   return data;
 }
 

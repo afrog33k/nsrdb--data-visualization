@@ -10,6 +10,7 @@
   "parserOptions": {
     "sourceType": "module"
   },
+
   "rules": {
     "brace-style": "error",
     "comma-spacing": [
@@ -25,6 +26,12 @@
         "after": true
       }
     ],
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      }
+    },
     "indent": [
       "error",
       2

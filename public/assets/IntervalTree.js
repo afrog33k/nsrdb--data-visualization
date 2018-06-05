@@ -1,3 +1,5 @@
+// /* eslint-disable */
+
 /**
  * A node in the interval tree.
  *

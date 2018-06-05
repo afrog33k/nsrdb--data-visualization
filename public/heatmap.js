@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
  * heatmap.js v2.0.0 | JavaScript Heatmap Library
  *

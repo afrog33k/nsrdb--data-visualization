@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /* global L */
 
 // import IntervalTree from 'diesal/src/ds/IntervalTree';
