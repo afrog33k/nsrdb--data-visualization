@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('denver', 
@@ -18,3 +17,4 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTable('denver')
   ])
 };
+

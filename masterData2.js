@@ -222,59 +222,61 @@ const data148222 = require('./data/148222.json');
 const data148223 = require('./data/148223.json');
 
 const allFiles = [data143882, data143883, data143884,
-data143885, data143886, data143887, data143888, data143889, data143890, 
-data143891, data143892, data143893, data143894, data143895, data143896, 
-data143897, data143898, data143899, data143900, data143901, data143902, 
-data143903, data144358, data144359, data144360, data144361, data144362, 
-data144363, data144364, data144365, data144366, data144367, data144368, 
-data144369, data144370, data144371, data144372, data144373, data144374, data145313, 
-data145314, data145315, data145316, data145317, data145318, data145319, 
-data145320, data145321, data145322, data145323, data145324, data145325, 
-data145326, data145327, data145328, data145329, data145330, data145331, 
-data145332, data145333, data145334, data144835, data144836, data144837, data144838,
-data146753, data146754, data146755, data146756, data146757, data146758, 
-data146759, data146760, data146761, data146762, data146763, data146764, 
-data146765, data146766, data146767, data146768, data146769, data146770, 
-data146771, data146772, data146773, data146774,
-data144375, data144376, data144377, data144378, data144379, data144835,
-data144836, data144837, data144838, data144839, data144840, data144841,
-data144842, data144843, data144844, data144845, data144846, data144847,
-data144848, data144849, data144850, data144851, data144852, data144853,
-data144854, data144855, data144856, data145313, data145314, data145315,
-data145316, data145317, data145318, data145319, data145320, data145321,
-data145322, data145323, data145324, data145325, data145326, data145327,
-data145328, data145329, data145330, data145331, data145332, data145333, 
-data145334, data145792, data145793, data145794, 
-data145795, data145796, data145797, data145798, data145799, data145800, 
-data145801, data145802, data145803, data145804, data145805, data145806, 
-data145807, data145808, data145809, data145810, data145811, data145812, 
-data145813, data146272, data146273, data146274, data146275, data146276, 
-data146277, data146278, data146279, data146280, data146281, data146282, 
-data146283, data146284, data146285, data146286, data146287, 
-data146288, data146289, data146290, data146291, data146292, data146293,
-data146753, data146754, data146755, data146756, data146757, data146758, 
-data146759, data146760, data146761, data146762, data146763, data146764, 
-data146765, data146766, data146767, data146768, data146769, data146770, 
-data146771, data146772, data146773, data146774,
-data147235, data147236, data147237, data147238, data147239, data147240, 
-data147241, data147242, data147243, data147244, data147245, data147246, 
-data147247, data147248, data147249, data147250, data147251, data147252, 
-data147253, data147254, data147255, data147256, data147718, data147719, 
-data147720, data147721, data147722, data147723, data147724, data147725, 
-data147726, data147727, data147728, data147729, data147730, data147731, 
-data147732, data147733, data147734, data147735, data147736, data147737, 
-data147738, data147739, data148202, data148203,
-data148204, data148205, data148206, data148207, data148208, data148209,
-data148210, data148211, data148212, data148213, data148214, data148215, 
-data148216, data148217, data148218, data148219, data148220, data148221, 
-data148222, data148223]
+  data143885, data143886, data143887, data143888, data143889, data143890, 
+  data143891, data143892, data143893, data143894, data143895, data143896, 
+  data143897, data143898, data143899, data143900, data143901, data143902, 
+  data143903, data144358, data144359, data144360, data144361, data144362, 
+  data144363, data144364, data144365, data144366, data144367, data144368, 
+  data144369, data144370, data144371, data144372, data144373, data144374,
+  data145313, 
+  data145314, data145315, data145316, data145317, data145318, data145319, 
+  data145320, data145321, data145322, data145323, data145324, data145325, 
+  data145326, data145327, data145328, data145329, data145330, data145331, 
+  data145332, data145333, data145334, data144835, data144836, data144837, 
+  data144838,
+  data146753, data146754, data146755, data146756, data146757, data146758, 
+  data146759, data146760, data146761, data146762, data146763, data146764, 
+  data146765, data146766, data146767, data146768, data146769, data146770, 
+  data146771, data146772, data146773, data146774,
+  data144375, data144376, data144377, data144378, data144379, data144835,
+  data144836, data144837, data144838, data144839, data144840, data144841,
+  data144842, data144843, data144844, data144845, data144846, data144847,
+  data144848, data144849, data144850, data144851, data144852, data144853,
+  data144854, data144855, data144856, data145313, data145314, data145315,
+  data145316, data145317, data145318, data145319, data145320, data145321,
+  data145322, data145323, data145324, data145325, data145326, data145327,
+  data145328, data145329, data145330, data145331, data145332, data145333, 
+  data145334, data145792, data145793, data145794, 
+  data145795, data145796, data145797, data145798, data145799, data145800, 
+  data145801, data145802, data145803, data145804, data145805, data145806, 
+  data145807, data145808, data145809, data145810, data145811, data145812, 
+  data145813, data146272, data146273, data146274, data146275, data146276, 
+  data146277, data146278, data146279, data146280, data146281, data146282, 
+  data146283, data146284, data146285, data146286, data146287, 
+  data146288, data146289, data146290, data146291, data146292, data146293,
+  data146753, data146754, data146755, data146756, data146757, data146758, 
+  data146759, data146760, data146761, data146762, data146763, data146764, 
+  data146765, data146766, data146767, data146768, data146769, data146770, 
+  data146771, data146772, data146773, data146774,
+  data147235, data147236, data147237, data147238, data147239, data147240, 
+  data147241, data147242, data147243, data147244, data147245, data147246, 
+  data147247, data147248, data147249, data147250, data147251, data147252, 
+  data147253, data147254, data147255, data147256, data147718, data147719, 
+  data147720, data147721, data147722, data147723, data147724, data147725, 
+  data147726, data147727, data147728, data147729, data147730, data147731, 
+  data147732, data147733, data147734, data147735, data147736, data147737, 
+  data147738, data147739, data148202, data148203,
+  data148204, data148205, data148206, data148207, data148208, data148209,
+  data148210, data148211, data148212, data148213, data148214, data148215, 
+  data148216, data148217, data148218, data148219, data148220, data148221, 
+  data148222, data148223]
 
 
 const dataCleaner = (datasetInput) => {
   let dataset = datasetInput
   let infoObject = dataset.splice(0, 1)
   const timeArray = dataset.reduce((array, time) => {
-    if (time.Month == 6 && time.Minute == 0 && time.Day == 21){
+    if (time.Month == 6 && time.Minute == 0 && time.Day == 21) {
       array.push({
         Latitude: infoObject[0].Latitude,
         Longitude: infoObject[0].Longitude,
@@ -285,22 +287,27 @@ const dataCleaner = (datasetInput) => {
     }
     return array
   }, [])
+
   return timeArray
 }
 
 const addFile = async (allFiles) => {
   const superCleanDataPromises = await allFiles.map(async file => {
     let data = await dataCleaner(file)
+
     return data
   })
   const superCleanData = await Promise.all(superCleanDataPromises)
   const solarData = JSON.stringify(superCleanData, null, ' ')
+
   fs.writeFile('./clean-data2.json', solarData, 'utf8', err => {
-    if(err) {
+    if (err) {
+      // eslint-disable-next-line
       return console.log('write file error', err);
     }
   })
-    console.log('data saved to clean-data file');
+  // eslint-disable-next-line
+  console.log('data saved to clean-data file');
 }
 
 addFile(allFiles)

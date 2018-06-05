@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha --exit"
+    "test": "NODE_ENV=test mocha --exit",
+    "lint": "eslint \"./**/*.js\" --fix"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +13,7 @@
     "chai": "^4.1.2",
     "chai-fetch-mock": "^2.0.0",
     "chai-http": "^4.0.0",
+    "eslint": "^4.19.1",
     "express": "^4.16.3",
     "fetch-mock": "^6.4.3",
     "knex": "^0.14.6",
@@ -20,5 +22,8 @@
     "node-fetch": "^2.1.2",
     "papaparse": "^4.4.0",
     "pg": "^7.4.3"
+  },
+  "devDependencies": {
+    "eslint-plugin-babel": "^5.1.0"
   }
 }

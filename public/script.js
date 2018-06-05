@@ -1,12 +1,12 @@
 var timelineControl;
 
+/* eslint-disable */
 const map = L.map('map', {
   zoom: 9,
   center: [39.7392, -104.9903]
 });
 
-
-var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
@@ -15,11 +15,11 @@ var legend = L.control({
   position: 'bottomleft'
 });
 
-legend.onAdd = function (map) {
+legend.onAdd = function () {
   var div = L.DomUtil.create('div', 'info legend'),
-    grades = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 650, 700, 750, 800, 850, 900, 950,  1000],
-    labels = []
-
+    grades = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 
+      550, 650, 700, 750, 800, 850, 900, 950,  1000];
+  
   for (let i = 0; i < grades.length; i++) {
     div.innerHTML += 
       '<i style="background-color:' + getColor(grades[i] + 1) + '"></i> ' +
@@ -27,6 +27,8 @@ legend.onAdd = function (map) {
   }
   return div
 }
+
+
 
 function solarFeed(data) {
   var getInterval = function(solar) {
@@ -36,20 +38,21 @@ function solarFeed(data) {
     }
   };
 
+
   timelineControl = L.timelineSliderControl({
-    formatOutput: function(date) {
+    formatOutput(date) {
       return new Date(date).toString();
     },
     position: 'topright',
     steps: 2000,
-    enablePlayback:true, 
+    enablePlayback: true, 
     enableKeyboardControls: true 
   })
 
   var timeline = L.timeline(data, {
-    getInterval: getInterval,
+    getInterval,
     waitToUpdateMap: true,
-    pointToLayer: function(data, latlng) {
+    pointToLayer(data, latlng) {
       var color = getColor(data.properties.DNI)
 
       return L.circleMarker(latlng, {
@@ -60,6 +63,8 @@ function solarFeed(data) {
       });
     }
   })
+
+  /* eslint-enable */
   timelineControl.addTo(map);
   timelineControl.addTimelines(timeline);
   timeline.addTo(map);
@@ -72,6 +77,7 @@ const geojsonify = (data) => {
     var startDate = startDateFormat.getTime()
     var endDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:59:59`)
     var endDate = endDateFormat.getTime()
+
     return {
       "type": "Feature",
       "properties": {
@@ -81,6 +87,7 @@ const geojsonify = (data) => {
       },
       "geometry": {
         "type": "Point",
+        // eslint-disable-next-line
         "coordinates": [parseFloat(datapoint.Longitude), parseFloat(datapoint.Latitude)]
       }
     }
@@ -89,41 +96,46 @@ const geojsonify = (data) => {
     "type": "FeatureCollection",
     "features": geojsonedArray
   }
+
   return geojsonedData
 }
+
 
 const getData = async() => {
   const response = await fetch('/api/v1/denver');
   const data = await response.json();
   const geojsonData = geojsonify(data);
+
   solarFeed(geojsonData);
 }
 
 const selectDay = (e) => {
   e.preventDefault();
   const hour = event.target.value;
+
   fetchDay(hour);
 }
 
 const fetchDay = async (hour) => {
   const response = await fetch(`/api/v1/denver/${hour}`);
   const data = await response.json();
+
   rerenderMap(data)
 }
 
 const dayRange = async (e) => {
   e.preventDefault();
   const dayRange = e.target.value;
-  console.log(dayRange)
   const response = await fetch(`/api/v1/denver?dayRange=${dayRange}`);
   const data = await response.json();
-  console.log('data:', data)
+
   rerenderMap(data)
 }
 
 const rerenderMap = (data) => {
   timelineControl.remove(map);
   const geojsonData = geojsonify(data);
+
   solarFeed(geojsonData);
 }
 
@@ -135,6 +147,9 @@ const resetMap = (e) => {
 
 getData();
 
+
+
+/* eslint-disable */
 $('.select-day').change(selectDay);
 $('.range').change(dayRange);
 $('.reset-map').click(resetMap);

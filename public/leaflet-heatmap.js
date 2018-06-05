@@ -1,3 +1,4 @@
+/* eslint-disable */
 // *
 // * Leaflet Heatmap Overlay
 // *
@@ -8,7 +9,7 @@
 
 var HeatmapOverlay = L.Class.extend({
 
-  initialize: function (config) {
+  initialize (config) {
     this.cfg = config;
     this._el = L.DomUtil.create('div', 'leaflet-zoom-hide');
     this._data = [];
@@ -16,7 +17,7 @@ var HeatmapOverlay = L.Class.extend({
     this.cfg.container = this._el;
   },
 
-  onAdd: function (map) {
+  onAdd (map) {
     var size = map.getSize();
 
     this._map = map;
@@ -43,17 +44,20 @@ var HeatmapOverlay = L.Class.extend({
     this._draw();
   },
 
-  onRemove: function (map) {
+  onRemove (map) {
     // remove layer's DOM elements and listeners
     map.getPanes().overlayPane.removeChild(this._el);
 
     map.off('viewreset', this._resetOrigin, this);
     map.off('dragend', this._draw, this);
   },
-  _draw: function() {
-    if (!this._map) { return; }
+  _draw() {
+    if (!this._map) {
+      return; 
+    }
     
     var point = this._map.latLngToContainerPoint(this._origin);        
+
     console.log(this._data)
     // reposition the layer
     this._el.style[HeatmapOverlay.CSS_TRANSFORM] = 'translate(' +
@@ -62,7 +66,7 @@ var HeatmapOverlay = L.Class.extend({
 
     this._update();
   },
-  _update: function() {
+  _update() {
     var bounds, zoom, scale;
 
     bounds = this._map.getBounds();
@@ -97,6 +101,7 @@ var HeatmapOverlay = L.Class.extend({
 
       var point = this._map.latLngToContainerPoint(latlng);
       var latlngPoint = { x: Math.round(point.x), y: Math.round(point.y) };
+
       latlngPoint[valueField] = value;
 
       var radius;
@@ -118,7 +123,7 @@ var HeatmapOverlay = L.Class.extend({
     this._heatmap.setData(generatedData);
   },
 
-  setData: function(data) {
+  setData(data) {
     this._max = data.max || this._max;
     var latField = this.cfg.latField || 'lat';
     var lngField = this.cfg.lngField || 'lng';
@@ -132,7 +137,8 @@ var HeatmapOverlay = L.Class.extend({
     while (len--) {
       var entry = data[len];
       var latlng = new L.LatLng(entry[latField], entry[lngField]);
-      var dataObj = { latlng: latlng };
+      var dataObj = { latlng };
+
       dataObj[valueField] = entry[valueField];
       if (entry.radius) {
         dataObj.radius = entry.radius;
@@ -144,10 +150,11 @@ var HeatmapOverlay = L.Class.extend({
 
   },
   // experimential... not ready.
-  addData: function(pointOrArray) {
+  addData(pointOrArray) {
     if (pointOrArray.length > 0) {
       var len = pointOrArray.length;
-      while(len--) {
+
+      while (len--) {
         this.addData(pointOrArray[len]);
       }
     } else {
@@ -156,7 +163,7 @@ var HeatmapOverlay = L.Class.extend({
       var valueField = this.cfg.valueField || 'value';
       var entry = pointOrArray;
       var latlng = new L.LatLng(entry[latField], entry[lngField]);
-      var dataObj = { latlng: latlng };
+      var dataObj = { latlng };
       
       dataObj[valueField] = entry[valueField];
       this._max = Math.max(this._max, dataObj[valueField]);
@@ -168,7 +175,7 @@ var HeatmapOverlay = L.Class.extend({
       this._draw();
     }
   },
-  _resetOrigin: function () {
+  _resetOrigin () {
     this._origin = this._map.layerPointToLatLng(new L.Point(0, 0));
     this._draw();
   } 
@@ -177,15 +184,16 @@ var HeatmapOverlay = L.Class.extend({
 HeatmapOverlay.CSS_TRANSFORM = (function() {
   var div = document.createElement('div');
   var props = [
-  'transform',
-  'WebkitTransform',
-  'MozTransform',
-  'OTransform',
-  'msTransform'
+    'transform',
+    'WebkitTransform',
+    'MozTransform',
+    'OTransform',
+    'msTransform'
   ];
 
   for (var i = 0; i < props.length; i++) {
     var prop = props[i];
+
     if (div.style[prop] !== undefined) {
       return prop;
     }
