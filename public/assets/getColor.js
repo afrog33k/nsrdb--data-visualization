@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const getColor = (DNI) => {
   let color;
 

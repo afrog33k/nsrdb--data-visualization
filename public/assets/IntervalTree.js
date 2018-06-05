@@ -1,4 +1,4 @@
-// /* eslint-disable */
+/* eslint-disable */
 
 /**
  * A node in the interval tree.

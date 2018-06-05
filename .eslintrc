@@ -8,9 +8,9 @@
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaVersion": 8
   },
-
   "rules": {
     "brace-style": "error",
     "comma-spacing": [
@@ -27,9 +27,13 @@
       }
     ],
     "parserOptions": {
-      "ecmaVersion": 6,
+      "ecmaVersion": 8,
       "ecmaFeatures": {
-        "experimentalObjectRestSpread": true
+        "modules":true,
+        "arrowFunctions":true,
+        "classes":true,
+        "experimentalObjectRestSpread": true,
+        "jsx": true
       }
     },
     "indent": [

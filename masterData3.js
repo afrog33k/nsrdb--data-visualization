@@ -24,16 +24,17 @@ const data148709 = require('./data/148709.json');
 
 
 const allFiles = [data148688, data148689, data148690, data148691, 
-data148692, data148693, data148694, data148695, data148696, 
-data148697, data148698, data148699, data148700, data148701, data148702, data148703, 
-data148704, data148705, data148706, data148707, data148708, data148709]
+  data148692, data148693, data148694, data148695, data148696, 
+  data148697, data148698, data148699, data148700, data148701, data148702, 
+  data148703, 
+  data148704, data148705, data148706, data148707, data148708, data148709]
 
 
 const dataCleaner = (datasetInput) => {
   let dataset = datasetInput
   let infoObject = dataset.splice(0, 1)
   const timeArray = dataset.reduce((array, time) => {
-    if (time.Month == 6 && time.Minute == 0 && time.Day == 21){
+    if (time.Month == 6 && time.Minute == 0 && time.Day == 21) {
       array.push({
         Latitude: infoObject[0].Latitude,
         Longitude: infoObject[0].Longitude,
@@ -44,22 +45,27 @@ const dataCleaner = (datasetInput) => {
     }
     return array
   }, [])
+
   return timeArray
 }
 
 const addFile = async (allFiles) => {
   const superCleanDataPromises = await allFiles.map(async file => {
     let data = await dataCleaner(file)
+
     return data
   })
   const superCleanData = await Promise.all(superCleanDataPromises)
   const solarData = JSON.stringify(superCleanData, null, ' ')
+
   fs.writeFile('./clean-data3.json', solarData, 'utf8', err => {
-    if(err) {
+    if (err) {
+      // eslint-disable-next-line
       return console.log('write file error', err);
     }
   })
-    console.log('data saved to clean-data file');
+  // eslint-disable-next-line
+  console.log('data saved to clean-data file');
 }
 
 addFile(allFiles)

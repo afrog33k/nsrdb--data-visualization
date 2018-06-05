@@ -1,4 +1,5 @@
 const chai = require('chai');
+// eslint-disable-next-line
 const should = chai.should();
 const { app, database } = require('../server.js');
 const chaiHttp = require('chai-http');

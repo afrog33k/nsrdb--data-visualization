@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha --exit",
-    "lint": "eslint \"./**/*.js\" --fix",
-    "parser": "babel-eslint"
+    "lint": "eslint \"./**/*.js\" --fix"
   },
   "author": "",
   "license": "ISC",
@@ -25,7 +24,6 @@
     "pg": "^7.4.3"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.3",
-    "parser": "babel-eslint"
+    "eslint-plugin-babel": "^5.1.0"
   }
 }

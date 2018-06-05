@@ -1,9 +1,10 @@
-const { data, jsonData } = require('./mockdata.js');
+// const { jsonData } = require('./mockdata.js');
 
 // eslint-disable-next-line
 const fetchDay = async (hour) => {
   const response = await fetch(`/api/v1/denver/${hour}`);
   const data = await response.json();
+
   rerenderMap(data)
 }
 
@@ -21,6 +22,7 @@ const geojsonify = (data) => {
     var startDate = startDateFormat.getTime()
     var endDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:59:59`)
     var endDate = endDateFormat.getTime()
+
     return {
       "type": "Feature",
       "properties": {
@@ -30,6 +32,7 @@ const geojsonify = (data) => {
       },
       "geometry": {
         "type": "Point",
+        // eslint-disable-next-line
         "coordinates": [parseFloat(datapoint.Longitude), parseFloat(datapoint.Latitude)]
       }
     }
@@ -47,6 +50,7 @@ const dayRange = async (e) => {
   const dayRange = e.target.value;
   const response = await fetch(`/api/v1/denver?dayRange=${dayRange}`);
   const data = await response.json();
+
   rerenderMap(data)
 }
 
@@ -54,6 +58,7 @@ const getData = async() => {
   const response = await fetch('/api/v1/denver');
   const data = await response.json();
   const geojsonData = geojsonify(data);
+
   solarFeed(geojsonData);
 }
 
