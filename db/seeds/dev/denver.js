@@ -1,6 +1,7 @@
 const solarData1 = require('../../../clean-data.json');
 const solarData2 = require('../../../clean-data2.json');
-const solarData = [...solarData1, ...solarData2]
+const solarData3 = require('../../../clean-data3.json');
+const solarData = [...solarData1, ...solarData2, ...solarData3]
 
 exports.seed = function(knex, Promise) {
   return knex('denver').del()
