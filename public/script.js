@@ -12,7 +12,7 @@ var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-m
 }).addTo(map);
 
 var legend = L.control({
-  position: 'bottomright'
+  position: 'bottomleft'
 });
 
 legend.onAdd = function (map) {
@@ -67,7 +67,6 @@ function solarFeed(data) {
 }
 
 const geojsonify = (data) => {
-  console.log(data)
   let geojsonedArray = data.map(datapoint => {
     var startDateFormat = new Date(`${datapoint.Day} ${datapoint.Time}:00:00`)
     var startDate = startDateFormat.getTime()
@@ -115,9 +114,10 @@ const fetchDay = async (hour) => {
 const dayRange = async (e) => {
   e.preventDefault();
   const dayRange = e.target.value;
+  console.log(dayRange)
   const response = await fetch(`/api/v1/denver?dayRange=${dayRange}`);
   const data = await response.json();
-  console.log('data:', data);
+  console.log('data:', data)
   rerenderMap(data)
 }
 

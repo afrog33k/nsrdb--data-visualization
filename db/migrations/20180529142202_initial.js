@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
         table.string('Latitude');
         table.string('Longitude');
         table.string('Day');
-        table.string('Time');
+        table.integer('Time').unsigned();
         table.integer('DNI').unsigned();
       })
   ])
