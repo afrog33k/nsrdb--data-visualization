@@ -28,7 +28,7 @@ legend.onAdd = function () {
   return div
 }
 
-/* eslint-enable */
+
 
 function solarFeed(data) {
   var getInterval = function(solar) {
@@ -126,9 +126,9 @@ const fetchDay = async (hour) => {
 const dayRange = async (e) => {
   e.preventDefault();
   const dayRange = e.target.value;
-  console.log(dayRange)
   const response = await fetch(`/api/v1/denver?dayRange=${dayRange}`);
   const data = await response.json();
+
   rerenderMap(data)
 }
 
