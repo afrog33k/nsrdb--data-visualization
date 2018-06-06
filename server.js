@@ -21,7 +21,7 @@ app.get('/api/v1/denver', (request, response) => {
   if (queryStart !== '2016-6-undefined') {
     database('denver').whereBetween('Day', [queryStart, queryEnd]).select()
       .then(range => {
-        if(range.length){
+        if (range.length) {
           response.status(200).json(range)
         } else {
           response.status(500).json({err: 'Date range is invalid'})
@@ -43,6 +43,7 @@ app.get('/api/v1/denver', (request, response) => {
 
 app.get('/api/v1/denver/:day', (request, response) => {
   let day = `2016-6-${request.params.day}`
+
   database('denver').where('Day', day).select()
     .then(day => {
       if (day.length) {

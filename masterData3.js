@@ -59,7 +59,8 @@ const dataCleaner = (datasetInput) => {
   let dataset = datasetInput
   let infoObject = dataset.splice(0, 1)
   const timeArray = dataset.reduce((array, time) => {
-    if (time.Month == 6 && time.Minute == 0 && time.Day >=14 && time.Day <= 21) {
+    if (time.Month == 6 && time.Minute == 0 
+      && time.Day >= 14 && time.Day <= 21) {
       array.push({
         Latitude: infoObject[0].Latitude,
         Longitude: infoObject[0].Longitude,
