@@ -5,6 +5,7 @@ before_script:
 - psql -c 'create database visualization_test;' -U postgres
 script:
 - npm run lint
+- npm test 
 notifications:
   email: false
 deploy:
