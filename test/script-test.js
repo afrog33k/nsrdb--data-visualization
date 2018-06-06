@@ -2,7 +2,6 @@ const expect = require('chai').expect;
 const { 
   getData,
   fetchDay, 
-  dayRange, 
   geojsonify 
 } = require('./script-fetchcalls.js');
 const { data, geoJson } = require('./mockdata.js');
@@ -30,30 +29,12 @@ describe('getData', () => {
 
 describe('fetchDay', () => {
   it('Should fetch all the data from /api/v1/denver/:hour', () => {
-    const hour = 2;
-    const fetchMockedData = fetchMock.get(`/api/v1/denver/${hour}`, data)
+    const day = 2;
+    const fetchMockedData = fetchMock.get('/api/v1/denver/2', data)
 
-    return fetchDay(hour)
+    return fetchDay(day)
       .then(() => {
         expect(fetchMockedData).route('/api/v1/denver/2').to.have.been.called
-
-      })
-      .catch(error => {
-        throw error;
-      })
-  });
-});
-
-describe('dayRange', () => {
-  it('Should fetch all the data from /api/v1/denver/', () => {
-    const event = { target: { value: 2 }};
-    // eslint-disable-next-line
-    const fetchMockedData = fetchMock.get(`/api/v1/denver?dayRange=${event.target.value}`, data)
-
-    return dayRange(event)
-      .then(() => {
-        // eslint-disable-next-line
-        expect(fetchMockedData).route('/api/v1/denver?dayRange=2').to.have.been.called
 
       })
       .catch(error => {

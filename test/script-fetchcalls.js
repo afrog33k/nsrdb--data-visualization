@@ -46,14 +46,6 @@ const geojsonify = (data) => {
   return geojsonedData
 }
 
-const dayRange = async (e) => {
-  const dayRange = e.target.value;
-  const response = await fetch(`/api/v1/denver?dayRange=${dayRange}`);
-  const data = await response.json();
-
-  rerenderMap(data)
-}
-
 const getData = async() => {
   const response = await fetch('/api/v1/denver');
   const data = await response.json();
@@ -62,4 +54,4 @@ const getData = async() => {
   solarFeed(geojsonData);
 }
 
-module.exports = { getData, fetchDay, dayRange,  geojsonify}
+module.exports = { getData, fetchDay,  geojsonify}
