@@ -2,12 +2,12 @@ var timelineControl;
 
 /* eslint-disable */
 const map = L.map('map', {
-  zoom: 9,
-  center: [39.7392, -104.9903]
+  zoom: 9.3,
+  center: [39.5203, -105.3057]
 });
 
 L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-  maxZoom: 19,
+  maxZoom: 19.7,
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
@@ -108,13 +108,13 @@ const getData = async() => {
 
 const selectDay = (e) => {
   e.preventDefault();
-  const hour = event.target.value;
+  const day = event.target.value;
 
-  fetchDay(hour);
+  fetchDay(day);
 }
 
-const fetchDay = async (hour) => {
-  const response = await fetch(`/api/v1/denver/${hour}`);
+const fetchDay = async (day) => {
+  const response = await fetch(`/api/v1/denver/${day}`);
   const data = await response.json();
 
   rerenderMap(data)
@@ -131,14 +131,14 @@ const rerenderMap = (data) => {
 const makeSlider = () => {
   $('.slider').slider({
     range: true,
-    min: 0,
-    max: 24,
+    min: 14,
+    max: 21,
     step: 1,
-    values: [0, 24],
+    values: [14, 21],
     slide: async (event, ui) => {
       let start = ui.values[0]
       let end = ui.values[1]
-      $('.selected-range').text(`Start: ${start}:00 - End: ${end}:00`)
+      $('.selected-range').text(`Start: June ${start} - End: June ${end}`)
       const response = await fetch(`/api/v1/denver?start=${start}&end=${end}`);
   const data = await response.json();
   rerenderMap(data)
@@ -148,7 +148,7 @@ const makeSlider = () => {
 
 const resetMap = (e) => {
   e.preventDefault();
-  $( ".slider" ).slider("values", [0, 24]);
+  $( ".slider" ).slider("values", [14, 21]);
   $('.selected-range').text('')
   timelineControl.remove(map);
   getData();

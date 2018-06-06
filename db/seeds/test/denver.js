@@ -3,14 +3,14 @@ const mockData = [[
   {
     Latitude: 39.09,
     Longitude: -105.86,
-    Day: '2016-6-21',
+    Day: '2016-6-19',
     Time: 10,
     DNI: 100
   },
   {
     Latitude: 39.17,
     Longitude: -105.26,
-    Day: '2016-6-21',
+    Day: '2016-6-20',
     Time: 12,
     DNI: 200
   },
